@@ -48,7 +48,9 @@
 
     // LOGIN CONTROLLER
     function loginCtrl ($http, $state, $window, $rootScope, $location) {
+
       var logCtrl = this
+      // logCtrl.loggedIn = false
       logCtrl.page = 'Login'
 
       // ------ test for authentication routing ----------
@@ -60,10 +62,26 @@
       //     console.log(logCtrl.friends)
       //   })
 
+      logCtrl.isLoggedIn = function() {
+          if ($rootScope.currentUserSignedIn) {
+            console.log('loggedIn: TRUE')
+            return true
+          } else {
+            console.log('loggedIn: FALSE')
+            return false
+          }
+      }
+
+      if ($state.is('logout')) {
+        console.log('logging off!')
+        $rootScope.currentUserSignedIn = false
+        $window.localStorage.removeItem('token')
+        $state.go('login')
+      }
         //create login method to send user info to server
         logCtrl.showLogin = function(){
             console.log('route: show login page!')
-            $state.transitionTo('login')
+            // $state.transitionTo('login')
             $state.go('login')
         }
 
@@ -74,8 +92,11 @@
             console.log("from login route",response)
              var token = response.data.token
              if(token){
+               logCtrl.loggedIn = true
+               $rootScope.currentUserSignedIn = true
+               console.log('setting rootScope.currentUserSignedIn to TRUE')
                $window.localStorage.setItem('token',token)
-               $state.go('profile')
+               $state.go('dashboard')
              }else{
                console.log("no token found")
              }
@@ -107,9 +128,15 @@
         controller: 'loginController as logCtrl',
         authenticate: false
       })
-      .state('profile', {
-        url: '/profile',
-        templateUrl: './partials/profile.html',
+      .state('logout', {
+        url: '/logout',
+        templateUrl: './partials/landing.html',
+        controller: 'loginController as logCtrl',
+        authenticate: false
+      })
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: './partials/dashboard.html',
         controller: 'loginController as logCtrl',
         authenticate: true
       })

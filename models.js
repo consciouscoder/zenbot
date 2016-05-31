@@ -1,12 +1,34 @@
 var  mongoose = require("mongoose")
 var bcrypt = require('bcryptjs')
 
+var twitterScrapSchema = mongoose.Schema({
+    username: {
+      type: String,
+      unique: true
+    },
+    password: String,
+    twitterName: String,
+    tweets: []
+  })
+
+var googleScrapeSchema = mongoose.Schema({
+    username: {
+      type: String,
+      unique: true
+    },
+    password: String,
+    googleQuery: String,
+    topWords: {word : String, count : Number}
+  })
+
 var userSchema = mongoose.Schema({
     username: {
       type: String,
       unique: true
     },
-    password: String
+    password: String,
+    twitterScrapes: [twitterScrapSchema],
+    googleWordScrapes: [googleScrapeSchema]
   })
 
 userSchema.pre('save', function(next) {
