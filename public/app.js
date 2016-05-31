@@ -1,5 +1,5 @@
 (function () {
-  angular.module('jwt', ['ui.router'])
+  angular.module('ZenBot', ['ui.router'])
     .run(function ($rootScope, $state, $window) {
       $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if(toState.authenticate) {
@@ -50,12 +50,22 @@
     function loginCtrl ($http, $state, $window, $rootScope, $location) {
       var logCtrl = this
       logCtrl.page = 'Login'
-      $http.get('/api/friends')
-        .then(function(response){
-          console.log(response)
-          logCtrl.friends = response.data.friends[0]
-          console.log(logCtrl.friends)
-        })
+
+      // ------ test for authentication routing ----------
+      //
+      // $http.get('/api/friends')
+      //   .then(function(response){
+      //     console.log(response)
+      //     logCtrl.friends = response.data.friends[0]
+      //     console.log(logCtrl.friends)
+      //   })
+
+        //create login method to send user info to server
+        logCtrl.showLogin = function(){
+            console.log('route: show login page!')
+            $state.transitionTo('login')
+            $state.go('login')
+        }
 
       //create login method to send user info to server
       logCtrl.login = function(){
@@ -71,6 +81,8 @@
              }
         })
       }
+
+      // LOG OUT - Remove Token
       logCtrl.logout = function(){
         $window.localStorage.removeItem('token')
         $state.go('login')
@@ -83,8 +95,14 @@
     $httpProvider.interceptors.push('AuthInterceptor');
 
     $stateProvider
-      .state('login', {
+      .state('landing', {
         url: '/',
+        templateUrl: './partials/landing.html',
+        controller: 'loginController as logCtrl',
+        authenticate: false
+      })
+      .state('login', {
+        url: '/login',
         templateUrl: './partials/login.html',
         controller: 'loginController as logCtrl',
         authenticate: false

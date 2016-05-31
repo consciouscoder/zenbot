@@ -1,4 +1,59 @@
-<div class="row">
+
+<BR><BR><BR>
+
+  <div class="box-login">
+    <div class="box-inside-login">
+      <form class="form-signin" ng-submit="logCtrl.login()">
+        <h3 class="form-signin-heading">Please sign in</h3>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <!-- type="email"  -->
+        <input id="inputEmail" class="form-control" placeholder="Email address" ng-model="logCtrl.username" autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <BR>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="logCtrl.password">
+        <BR>
+        <button class="btn btn-primary btn" type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+<!-- <div class="box-login">
+  <form>
+    <div class="input-prepend">
+      <span class="add-on"><i class="icon-envelope"></i></span>
+      <input class="span2" type="text" placeholder="Email address">
+    </div>
+    <div class="input-prepend">
+      <span class="add-on"><i class="icon-key"></i></span>
+      <input class="span2" type="password" placeholder="Password">
+    </div>
+  </form>
+</div> -->
+
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <div class="form-login">
+            <h4>Welcome back.</h4>
+              <form ng-submit="logCtrl.login()">
+                  <input type="text" id="userName" class="form-control input-sm chat-input" ng-model="logCtrl.username" placeholder="username" />
+                  </br>
+                  <input type="text" id="userPassword" class="form-control input-sm chat-input" ng-model="logCtrl.password" placeholder="password" />
+                  </br>
+                  <div class="wrapper">
+                  <span class="group-btn">
+                      <a href="#" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></a>
+                  </span>
+              </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>  -->
+
+
+<!-- <div class="row">
   <form class="col s12" ng-submit="logCtrl.login()">
     <div class="row">
       <div class="input-field col s6">
@@ -16,4 +71,4 @@
       </button>
     </div>
   </form>
-</div>
+</div> -->

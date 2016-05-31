@@ -1,0 +1,34 @@
+.landing-logo img {
+  height: auto;
+  width: auto;
+  max-width: 400px;
+  max-height: 400px;
+}
+
+.box-container {
+	text-align: center;
+	vertical-align: middle;
+  margin-top: 30px;
+}
+
+/* ----------- profile pic ------------- */
+
+.profile-img {
+    margin-top: -5px;
+    margin-right: 5px;
+    float: left;
+    background: url(http://placehold.it/30x30) 50% 50% no-repeat; /* 50% 50% centers image in div */
+    background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
+    width: 30px;
+    height: 30px;
+}
+/*----------- login -----------*/
+
+.box-login {
+  text-align: center;
+}
+
+.box-inside-login {
+  display: inline-block;
+  width: 300px;
+}
