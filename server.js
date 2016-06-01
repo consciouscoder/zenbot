@@ -7,7 +7,8 @@ var express = require('express'),
   cookieParser = require('cookie-parser'),
   jwt = require('jsonwebtoken'),
   save = require("./models"),
-  mySpecialSecret = "boom"
+  mySpecialSecret = "boom",
+  request = require('request');
 
 app.use(cookieParser())
 app.use(bodyParser.json())
@@ -19,30 +20,6 @@ app.use(express.static(__dirname + '/public'))
 mongoose.connect('mongodb://localhost/discs')
   // import bcrypt module
 var bcrypt = require('bcryptjs')
-
-  // User model and Schema
-// var userSchema = mongoose.Schema({
-//     username: {
-//       type: String,
-//       unique: true
-//     },
-//     password: String
-//   })
-
-  // Model middleware that runs before user is saved to db
-// userSchema.pre('save', function(next) {
-//   var user = this
-//   var hashPassword = bcrypt.hashSync(user.password, 8)
-//   user.password = hashPassword
-//   console.log('Encrypting PW-------------------')
-//   next()
-// })
-
-// Add a method to the userSchema to validate a pw
-// userSchema.methods.authenticate = function(userPassword) {
-//   var user = this
-//   return bcrypt.compareSync(userPassword, user.password)
-// }
 
 var User = mongoose.model('User', save.userSchema)
 
@@ -61,6 +38,34 @@ app.post('/signup', function(req, res) {
   })
 })
 
+
+// ================== HTTP POST TO BOT SERVER =====================
+app.get('/api/bot', function(req, res) {
+    request.post(
+        'http://127.0.0.1:8585',
+        { form: { twitterUser: 'realDonaldTrump' } },
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log('Response from tweet bot server: ', body)
+            } else if (error) {
+                console.log('POST error to tweet bot server: ', error)
+            } else {
+                console.log('', response)
+            }
+        }
+    );
+})
+
+// ================ HTTP POST ROUTE FROM ANGULAR CLIENT =================
+app.post('/api/bot', function(req, res) {
+
+    var twitterUser = req.body.twitterUser;
+
+    console.log('received POST BODY for bot: ', req.body)
+    console.log('received POST twitterUser for bot: ', req.body.twitterUser)
+    res.send('received: ', twitterUser);
+})
+// ======================================================================
 
 app.post('/login', function(req, res) {
   User.findOne({

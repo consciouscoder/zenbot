@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 
-<body>
+<body ng-controller="loginController as logCtrl">
 
   <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -35,8 +35,10 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">zenbot</a>
+        <!-- <a href="#" class="pull-left"><img src=".\images\zenbot_navbar.png"></a> -->
       </div>
-    <div ng-show="true">
+
+      <div ng-show="logCtrl.isLoggedIn">
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <!-- <li class="active"><a href="#">Home</a></li>
@@ -54,7 +56,7 @@
                 <li><a href="#">Settings</a></li>
                 <li role="separator" class="divider"></li>
                 <!-- <li class="dropdown-header">Nav header</li> -->
-                <li><a href="#/logout" id="action-logoff">Logout buddha@enlightenment.org</a></li>
+                <li><a href="#" ng-click="logCtrl.logout()" id="action-logoff">Logout buddha@enlightenment.org</a></li>
               </ul>
             </li>
           </ul>
@@ -73,18 +75,18 @@
 
     $('.dropdown-toggle').click(function(e){
         $(this).next(".dropdown-menu").toggle();
-        console.log('SHOWING nav drop down! ===========')
+        // console.log('SHOWING nav drop down! ===========')
         e.preventDefault();
     });
 
     $("#action-dashboard").click(function(e){
         $("#navDropDown").next(".dropdown-menu").toggle();
-        console.log('hiding nav drop down! Going to dashboard =====')
+        // console.log('hiding nav drop down! Going to dashboard =====')
     });
 
     $("#action-logoff").click(function(e){
         $("#navDropDown").next(".dropdown-menu").toggle();
-        console.log('hiding nav drop down! Going to logout =====')
+        // console.log('hiding nav drop down! Going to logout =====')
     });
 
 
@@ -110,6 +112,7 @@
   <ui-view></ui-view>
 
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="botFactory.js"></script>
 </body>
 
 </html>

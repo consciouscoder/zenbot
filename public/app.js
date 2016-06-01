@@ -1,5 +1,5 @@
 (function () {
-  angular.module('ZenBot', ['ui.router'])
+  angular.module('ZenBot', ['ui.router','botFactory'])
     .run(function ($rootScope, $state, $window) {
       $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if(toState.authenticate) {
@@ -46,8 +46,9 @@
 
     })
 
+    loginCtrl.$inject = ['$http','$state','$window','$rootScope','$location','twitterBotFactory']
     // LOGIN CONTROLLER
-    function loginCtrl ($http, $state, $window, $rootScope, $location) {
+    function loginCtrl ($http, $state, $window, $rootScope, $location, twitterBotFactory) {
 
       var logCtrl = this
       // logCtrl.loggedIn = false
@@ -61,23 +62,50 @@
       //     logCtrl.friends = response.data.friends[0]
       //     console.log(logCtrl.friends)
       //   })
+      //
+      // if ($state.is('logout')) {
+      //   console.log('logging off!')
+      //   // $rootScope.currentUserSignedIn = false
+      //   $window.localStorage.removeItem('token')
+      //   $state.go('login')
+      //   logCtrl.checkLogIn()
+      // }
 
-      logCtrl.isLoggedIn = function() {
-          if ($rootScope.currentUserSignedIn) {
+      logCtrl.isLoggedIn = false
+
+      logCtrl.checkLogIn = function() {
+          var token = $window.localStorage.getItem('token')
+          if (token) {
             console.log('loggedIn: TRUE')
-            return true
+            logCtrl.isLoggedIn = true
           } else {
             console.log('loggedIn: FALSE')
-            return false
+            logCtrl.isLoggedIn = false
           }
       }
+      // logCtrl.isLoggedIn = function() {
+      //     if ($rootScope.currentUserSignedIn) {
+      //       console.log('loggedIn: TRUE')
+      //       return true
+      //     } else {
+      //       console.log('loggedIn: FALSE')
+      //       return false
+      //     }
+      // }
 
-      if ($state.is('logout')) {
-        console.log('logging off!')
-        $rootScope.currentUserSignedIn = false
-        $window.localStorage.removeItem('token')
-        $state.go('login')
+      //
+      // logCtrl.twitterBot = function() {
+      //     twitterBotFactory.botConnect('realDonaldTrump').then(function(twitterBotResponse){
+      //         console.log('twitterBotResponse', twitterBotResponse)
+      //     })
+      // }
+
+      logCtrl.twitterBotNode = function() {
+          twitterBotFactory.botConnectNode('realDonaldTrump').then(function(twitterBotResponse){
+              console.log('twitterBotResponse: ', twitterBotResponse)
+          })
       }
+
         //create login method to send user info to server
         logCtrl.showLogin = function(){
             console.log('route: show login page!')
@@ -92,10 +120,10 @@
             console.log("from login route",response)
              var token = response.data.token
              if(token){
-               logCtrl.loggedIn = true
-               $rootScope.currentUserSignedIn = true
-               console.log('setting rootScope.currentUserSignedIn to TRUE')
+              //  $rootScope.currentUserSignedIn = true
+               console.log('running checkLogIn ==============')
                $window.localStorage.setItem('token',token)
+               logCtrl.checkLogIn()
                $state.go('dashboard')
              }else{
                console.log("no token found")
@@ -105,8 +133,10 @@
 
       // LOG OUT - Remove Token
       logCtrl.logout = function(){
+        console.log('logging off!')
         $window.localStorage.removeItem('token')
         $state.go('login')
+        logCtrl.checkLogIn()
       }
     }
 
@@ -119,25 +149,25 @@
       .state('landing', {
         url: '/',
         templateUrl: './partials/landing.html',
-        controller: 'loginController as logCtrl',
+        // controller: 'loginController as logCtrl',
         authenticate: false
       })
       .state('login', {
         url: '/login',
         templateUrl: './partials/login.html',
-        controller: 'loginController as logCtrl',
+        // controller: 'loginController as logCtrl',
         authenticate: false
       })
       .state('logout', {
         url: '/logout',
         templateUrl: './partials/landing.html',
-        controller: 'loginController as logCtrl',
+        // controller: 'loginController as logCtrl',
         authenticate: false
       })
       .state('dashboard', {
         url: '/dashboard',
         templateUrl: './partials/dashboard.html',
-        controller: 'loginController as logCtrl',
+        // controller: 'loginController as logCtrl',
         authenticate: true
       })
 
