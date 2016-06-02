@@ -2,11 +2,12 @@ var  mongoose = require("mongoose")
 var bcrypt = require('bcryptjs')
 
 var twitterScrapSchema = mongoose.Schema({
-    username: {
-      type: String,
-      unique: true
-    },
-    password: String,
+    // username: {
+    //   type: String,
+    //   unique: true
+    // },
+    // password: String,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     twitterName: String,
     tweets: []
   })
@@ -44,8 +45,13 @@ userSchema.methods.authenticate = function(userPassword) {
   return bcrypt.compareSync(userPassword, user.password)
 }
 
+module.exports = {
+    tScrap: mongoose.model("twitterScrap", twitterScrapSchema),
+    gScrap: mongoose.model("googleScrap", googleScrapeSchema),
+    User: mongoose.model('User', userSchema)
+}
 
-module.exports = mongoose.model("User", userSchema)
+// module.exports = mongoose.model("User", userSchema)
 
 // var  mongoose = require("mongoose")
 //

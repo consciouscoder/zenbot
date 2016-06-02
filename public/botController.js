@@ -12,6 +12,7 @@
       bCtrl.twitterBotNode = function() {
           twitterBotFactory.botConnectNode(bCtrl.twitterUser).then(function(twitterBotResponse){
               console.log('twitterBotResponse: ', twitterBotResponse)
+
               bCtrl.twitterBotArray = twitterBotResponse.data
               // console.log('tweet array: ', logCtrl.twitterBotArray)
           })
@@ -21,7 +22,12 @@
 
       //====== Save Twitter Scrape to Data Temple =======
       bCtrl.twitterSaveData = function() {
-          botDataFactory.botData.create(bCtrl.twitterBotArray)
+
+          bCtrl.twitterData = {  
+                           twitterName: bCtrl.twitterUser,
+                                tweets: bCtrl.twitterBotArray }
+
+          botDataFactory.create(bCtrl.twitterData)
       }
       //=================================================
 

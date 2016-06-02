@@ -104,6 +104,7 @@ app.post('/login', function(req, res) {
         // res.json({message: "you have successfully logged in!",sessionID: userSessionID, success: true})
         // 3 - Generate the JWT
         var token = jwt.sign({
+            id: user._id,
             name: user.username
           }, mySpecialSecret, {
             expiresIn: 1440

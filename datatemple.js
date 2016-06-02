@@ -13,13 +13,18 @@ module.exports = {
   },
 
   create : function(req,res) {
-    var data = new dataTemple (req.body);
-    data.save(function(err, data){
+    var botData = new dataTemple.tScrap (req.body);
+    botData.user = req.decoded.id
+
+    // console.log('tScrape: ', botData)
+    botData.save(function(err, data){
       if(err) {
         res.json({message: "database error: ", error:err})
+        console.log("error:", err)
       }
       else {
         res.json(data)
+        console.log('saved database: ', data)
       }
     })
   },
