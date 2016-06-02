@@ -1,5 +1,5 @@
 (function () {
-  angular.module('ZenBot', ['ui.router','botFactory'])
+  angular.module('zenbot', ['ui.router','botFactory','botController'])
     .run(function ($rootScope, $state, $window) {
       $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if(toState.authenticate) {
@@ -9,7 +9,8 @@
               }
         }
       })
-})
+    })
+
     .config(routerConfig)
     .controller('loginController', loginCtrl)
     .factory('AuthInterceptor', function($q, $location, $window) {
@@ -100,14 +101,6 @@
       //     })
       // }
 
-      logCtrl.twitterBotNode = function() {
-          twitterBotFactory.botConnectNode(logCtrl.twitterUser).then(function(twitterBotResponse){
-              console.log('twitterBotResponse: ', twitterBotResponse)
-              logCtrl.twitterBotArray = twitterBotResponse.data
-              // console.log('tweet array: ', logCtrl.twitterBotArray)
-          })
-      }
-
         //create login method to send user info to server
         logCtrl.showLogin = function(){
             console.log('route: show login page!')
@@ -142,8 +135,11 @@
       }
     }
 
+
+  // routerConfig.$inject = ['$stateProvider','$urlRouterProvider','$httpProvider', 'botController']
+
   // ROUTER CONFIGURATION
-  function routerConfig ($stateProvider, $urlRouterProvider,$httpProvider) {
+  function routerConfig ($stateProvider, $urlRouterProvider, $httpProvider) {
 
     $httpProvider.interceptors.push('AuthInterceptor');
 
@@ -169,7 +165,7 @@
       .state('dashboard', {
         url: '/dashboard',
         templateUrl: './partials/dashboard.html',
-        // controller: 'loginController as logCtrl',
+        controller: 'botCtrl as bCtrl',
         authenticate: true
       })
 

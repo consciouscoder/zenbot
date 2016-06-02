@@ -1,12 +1,12 @@
-// var router = require('express').Router(),
-//   discControl = require('./discs')
-//
-// router.route('/discs')
-//   .get(discControl.all)
-//   .post(discControl.create)
-// router.route('/discs/:id')
-//   .put(discControl.update)
-//   .delete(discControl.delete)
-//   .get(discControl.showOne)
-//
-// module.exports = router
+var router = require('express').Router(),
+  dataControl = require('./datatemple')
+
+router.route('/datatemple')
+  .get(dataControl.all)
+  .post(dataControl.create)
+router.route('/datatemple/:id')
+  .put(dataControl.update)
+  .delete(dataControl.delete)
+  .get(dataControl.showOne)
+
+module.exports = router

@@ -8,7 +8,8 @@ var express = require('express'),
   jwt = require('jsonwebtoken'),
   save = require("./models"),
   mySpecialSecret = "boom",
-  request = require('request');
+  request = require('request'),
+  apiRoutes = require('./routes');
 
 app.use(cookieParser())
 app.use(bodyParser.json())
@@ -17,7 +18,9 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(logger('dev'))
 app.use(express.static(__dirname + '/public'))
-mongoose.connect('mongodb://localhost/discs')
+app.use('/api', apiRoutes)
+
+mongoose.connect('mongodb://localhost/zenbot')
   // import bcrypt module
 var bcrypt = require('bcryptjs')
 
