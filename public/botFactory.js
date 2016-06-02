@@ -5,28 +5,32 @@
 
     botDataFactory.$inject = ['$http']
 
+    // ===== Factory for Data Temples (save scrape data) =====
+
     function botDataFactory ($http) {
       var botData = {}
 
-      botData.create = function(disc){
-          console.log("from factory: ",disc)
-          return $http.post('/api/datafactory', disc)
+      botData.create = function(botData){
+          console.log("from factory: ", botData)
+          return $http.post('/api/datatemple', botData)
       }
       botData.update = function(disc, id){
-          return $http.put('/api/datafactory/'+id, disc)
+          return $http.put('/api/datatemple/'+id, botData)
       }
       botData.delete = function(id){
-          return $http.delete('/api/datafactory/'+id)
+          return $http.delete('/api/datatemple/'+id)
       }
       botData.showAll = function(){
-          return $http.get('/api/datafactory')
+          return $http.get('/api/datatemple')
       }
       botData.showOne = function(id){
-          return $http.get('/api/datafactory/'+id)
+          return $http.get('/api/datatemple/'+id)
       }
       return botData
     }
 
+
+    // ===== Factory for Twitter Scraper =====
 
     twitterBotFactory.$inject = ['$http']  // ['$scope,'$http']
 

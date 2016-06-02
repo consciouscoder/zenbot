@@ -21,9 +21,10 @@
 
       //====== Save Twitter Scrape to Data Temple =======
       bCtrl.twitterSaveData = function() {
-
+          botDataFactory.botData.create(bCtrl.twitterBotArray)
       }
       //=================================================
+
 
 
       // bCtrl.page = $state.current.name
@@ -43,8 +44,8 @@
       //     bCtrl.discs = response.data
       // })
 
-      // bCtrl.submitBot = function(data) {
-      //   botDataFactory.create(data)
+      // bCtrl.submitBot = function(botData) {
+      //   botDataFactory.create(botData)
       //     .then(function (res) {
       //       console.log("new bot : ", res)
       //     })

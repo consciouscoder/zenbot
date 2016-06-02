@@ -162,7 +162,10 @@ server.listen(ipAndPort, function(request, response) {
                   return document.querySelector("div.w-button-more a").getAttribute('href');
               });
 
-              RecursiveTriverse(this, nbLinks, stream);
+              // ======= Stop after 500 tweets ======
+              if (count < 10) {
+                  RecursiveTriverse(this, nbLinks, stream);
+              }
           }
       });
   }
@@ -173,7 +176,10 @@ server.listen(ipAndPort, function(request, response) {
     this.waitForSelector('td.timestamp a',
         function pass () {
           this.then(function () {
+            // ======= Stop after 500 tweets ======
+            if (count < 10) {
               RecursiveTriverse(this, '/' + tweet_account_name, stream);
+            }
           });
         },
         function fail () {
