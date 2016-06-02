@@ -12,8 +12,14 @@
 }
 
 .box-dashboard {
+  width: 80%;
   margin: 40px;
   margin-top: 80px;
+}
+
+.box-dash-data {
+  margin: 40px;
+  margin-top: 40px;
 }
 
 /* ----------- profile pic ------------- */

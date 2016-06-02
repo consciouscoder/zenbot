@@ -22,5 +22,17 @@
     <p>
       <BR>
       <button class="btn btn-primary btn" type="submit" ng-click="logCtrl.twitterBotNode()">Connect to twitterBot</button>
+
+      <div style={width:50px; height:50px}>
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+      </div>
+
+    <div class="box-dash-data">
+      <table class="table table-condensed">
+        <tr ng-repeat="tweet in logCtrl.twitterBotArray track by $index"><td>{{ tweet }}</td></tr>
+      </table>
+    <div>
+
     </p>
 </div>

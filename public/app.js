@@ -103,6 +103,8 @@
       logCtrl.twitterBotNode = function() {
           twitterBotFactory.botConnectNode(logCtrl.twitterUser).then(function(twitterBotResponse){
               console.log('twitterBotResponse: ', twitterBotResponse)
+              logCtrl.twitterBotArray = twitterBotResponse.data
+              // console.log('tweet array: ', logCtrl.twitterBotArray)
           })
       }
 
