@@ -9,6 +9,10 @@ var server = require('webserver').create();
 var ipAndPort = '127.0.0.1:8585';
 var twitterUser = "";
 
+// Casper Timeout to wait for element
+casper.defaultWaitForTimeout = 10000
+casper.exitOnError = false
+
 console.log('listing on: ', ipAndPort)
 
 server.listen(ipAndPort, function(request, response) {
@@ -21,10 +25,10 @@ server.listen(ipAndPort, function(request, response) {
   if (request.method == 'POST') {
       console.log("POST params should be next: ");
       console.log(JSON.stringify(request.post));//dump
-      console.log(request.post['twitterUser']);//key is '1'
+      console.log(request.post['twitterUser']);
       twitterUser = request.post['twitterUser']
-      code = response.statusCode = 200;
-      response.write(code);
+      // code = response.statusCode = 200;
+      // response.write(code);
   }
 
   // response.statusCode = 200;
@@ -47,8 +51,10 @@ server.listen(ipAndPort, function(request, response) {
   console.log('request header Twitter User: ', request.headers.twitterUser)
   console.log('request POST for Twitter User: ', twitterUser)
 
+  //fs = require('fs')
+
   var utils = require('utils'),
-      fs = require('fs'), tweet_account_name,
+      tweet_account_name,
       nbLinks, outputfilename,
       header = "Tweet,Timestamp",
       stream, css, count = 0, images,
@@ -66,15 +72,6 @@ server.listen(ipAndPort, function(request, response) {
 
   var tweetsString = "";
   var tweetsArray = [];
-
-  // if (!casper.cli.has("account_name") || !casper.cli.has("css") || !casper.cli.has("images")) {
-  //     casper.echo("Ex: phantomjs.exe --config=config.json casperjs/bin/bootstrap.js --casper-path=casperjs --cli scrape_tweets.js --css=1 --images=0 --account_name=nigeriaitskills");
-  //     casper.exit(1);
-  //
-  // }
-  // tweet_account_name = casper.cli.get("account_name");
-  // css = Number(casper.cli.get("css"));
-  // images = Number(casper.cli.get("images"));
 
   tweet_account_name = twitterUser;
   css = 0;
@@ -103,6 +100,13 @@ server.listen(ipAndPort, function(request, response) {
       this.die('internal errors.');
   });
 
+
+  // function processTweetLinks(text) {
+  //     var exp = ""(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))
+  //     text = text.replace(exp, "");
+  //     return text;
+  // }
+
   function RecursiveTriverse(thecasper, newurl, stream) {
       newurl = 'https://mobile.twitter.com' + newurl;
 
@@ -128,19 +132,29 @@ server.listen(ipAndPort, function(request, response) {
                   } //TODO: end of 'if' part that's not working
 
                   //data.push('"' + tweeted + '",' + time_stamp);
-                  data.push('"' + tweeted + '"');
+                  // data.push('"' + tweeted + '"');
+                  data.push(tweeted);
 
               });
 
               return data;
           });
 
-          tweetsString = query.join(','); //replace(/\\"/g, '')
-          // tweetsString = tweetsString.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
-          // tweetsArray += '"' + tweetsString.split("\n") + '"';
-          tweetsArray += tweetsString.split("\\")
+          for(var i=0; i < query.length; i++) {
+            tweetsString = query[i].replace(/((bit\.ly|youtu\.be|pic\.twitter\.com|t\.co|lnkd\.in|tcrn\.ch|amp\.twimg\.com|twitter\.com|donaldjtrump\.com|facebook\.com)\S*)\b/g, "");
+            console.log('tweetsString [' + parseInt((i+1) + (count*20)) + ']: ', tweetsString)
+            tweetsArray.push(tweetsString)
+          }
 
-          stream.writeLine(query.join('\n'));
+          // tweetsString = query //.join('","') // .join('\n')
+          // tweetsArray.push(tweetsString)
+
+          // tweetsString = tweetsString.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '')
+          // tweetsArray += '"' + tweetsString.split("\n") + '"'
+          //tweetsArray += tweetsString.split("\\")
+
+          // stream.writeLine(query.join('\n'));
+
           this.echo(count + ': ' + newurl + ' size: ' + query.length);
 
           if (this.exists("div.w-button-more")) {
@@ -154,32 +168,28 @@ server.listen(ipAndPort, function(request, response) {
   }
 
   casper.start('https://mobile.twitter.com/' + tweet_account_name, function () {
-      if (this.exists("td.timestamp a")) {
-          outputfilename = tweet_account_name + ".csv";
+      //this.wait(500); // wait for twitter page load?
 
-          if (fs.exists(outputfilename)) fs.remove(outputfilename);
-
-          stream = fs.open(outputfilename, "w");
-          stream.writeLine(header);
-
+    this.waitForSelector('td.timestamp a',
+        function pass () {
           this.then(function () {
               RecursiveTriverse(this, '/' + tweet_account_name, stream);
           });
-      } else {
-          casper.die("Sorry, that page doesn't exist!");
-      }
+        },
+        function fail () {
+            console.log('ERROR: Did not find selector!')
+        }
+    );
   });
 
   casper.then(function () {
-      stream.close();
-      stream.flush();
       this.echo('Done');
   });
 
   casper.run(function(){
       console.log('\n\nFinished')
       response.statusCode = 200;
-      var body = JSON.stringify([tweetsArray])
+      var body = JSON.stringify(tweetsArray)
 
       response.write(body);
       response.close();

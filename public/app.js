@@ -101,7 +101,7 @@
       // }
 
       logCtrl.twitterBotNode = function() {
-          twitterBotFactory.botConnectNode('realDonaldTrump').then(function(twitterBotResponse){
+          twitterBotFactory.botConnectNode(logCtrl.twitterUser).then(function(twitterBotResponse){
               console.log('twitterBotResponse: ', twitterBotResponse)
           })
       }

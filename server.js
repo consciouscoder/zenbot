@@ -63,7 +63,27 @@ app.post('/api/bot', function(req, res) {
 
     console.log('received POST BODY for bot: ', req.body)
     console.log('received POST twitterUser for bot: ', req.body.twitterUser)
-    res.send('received: ', twitterUser);
+
+    request.post(
+        'http://127.0.0.1:8585',
+        { form: { twitterUser: twitterUser } },
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log('Response BODY from tweet bot server: ', body)
+
+                //=========== WAIT FOR RESPONSE FROM BOT SERVER THEN THE SEND TO CLIENT ============
+                res.send(body)
+                //=================================================================================
+
+            } else if (error) {
+                console.log('POST error to tweet bot server: ', error)
+            } else {
+                console.log('', response)
+            }
+        }
+    )
+
+    //res.send(twitterUser);
 })
 // ======================================================================
 

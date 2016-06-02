@@ -1,14 +1,26 @@
 
-<BR><BR><BR>
 
-  <H3>User Dashboard</H3>
+<div class="box-dashboard">
 
-  <BR>
+      <H3>User Dashboard</H3>
 
-  <!-- <p>Connect via <b>angular HTTP post -> Twitter scraper bot server</b>:
-  <button class="btn btn-primary btn" type="submit" ng-click="logCtrl.twitterBot()">Connect to twitterBot</button></p>
+      <BR>
 
-  <BR> -->
+      <!-- <p>Connect via <b>angular HTTP post -> Twitter scraper bot server</b>:
+      <button class="btn btn-primary btn" type="submit" ng-click="logCtrl.twitterBot()">Connect to twitterBot</button></p>
 
-  <p>Connect via <b>angular HTTP post -> node server HTTP post -> Twitter scraper bot server</b>:
-  <button class="btn btn-primary btn" type="submit" ng-click="logCtrl.twitterBotNode()">Connect to twitterBot</button></p>
+      <BR> -->
+
+    <p><b>Enter Twitter user to scrape:</b><BR>
+    <div class="input-group">
+      <span class="input-group-addon">@</span>
+      <input type="text" placeholder="Scrape which Twitter name?" ng-model="logCtrl.twitterUser" class="form-control">
+    </div>
+
+      <!-- <input placeholder="Scrape which Twitter name?" class="form-control" ng-model="logCtrl.twitterUser"> -->
+    </p>
+    <p>
+      <BR>
+      <button class="btn btn-primary btn" type="submit" ng-click="logCtrl.twitterBotNode()">Connect to twitterBot</button>
+    </p>
+</div>
