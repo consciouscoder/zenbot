@@ -7,7 +7,7 @@ var request = require("request"),
 	totalResults = 0,
 	resultsDownloaded = 0;
 
-// Filter out common words
+// Filter out common words / HTML tags and JS
 function wordOK(word) {
 		switch (word) {
 	    case 'ffffff':

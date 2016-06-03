@@ -168,6 +168,18 @@
         controller: 'botCtrl as bCtrl',
         authenticate: true
       })
+      .state('twitterbot', {
+        url: '/twitterbot',
+        templateUrl: './partials/twitterbot.html',
+        controller: 'botCtrl as bCtrl',
+        authenticate: true
+      })
+      .state('googlebot', {
+        url: '/googlebot',
+        templateUrl: './partials/googlebot.html',
+        controller: 'botCtrl as bCtrl',
+        authenticate: true
+      })
 
     $urlRouterProvider.otherwise('/')
   }

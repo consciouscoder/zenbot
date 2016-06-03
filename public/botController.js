@@ -17,8 +17,6 @@
               // console.log('tweet array: ', logCtrl.twitterBotArray)
           })
       }
-      //=================================================
-
 
       //====== Save Twitter Scrape to Data Temple =======
       bCtrl.twitterSaveData = function() {
@@ -29,7 +27,8 @@
 
           botDataFactory.create(bCtrl.twitterData)
       }
-      //=================================================
+
+      //====== Word Cloud Visualization  =======
 
       bCtrl.twitterWordCloud = function() {
             // console.log('word freq: ', wordFrequency(bCtrl.twitterBotArray.join()))

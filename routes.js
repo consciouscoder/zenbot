@@ -12,14 +12,7 @@ router.route('/datatemple/:id')
   .get(dataControl.showOne)
 
   function authorize(req, res, next) {
-    //check if a cookie exists if so let them pass
-    // if(req.cookies.userSessionID){
-    //   next()
-    // }else{
-    //   //tell the to fuck off
-    //   res.json({message: "No cookie you buster! F***k Off!", success: false})
-    // }
-    // 1 - let's check everywhere for the user's token
+
     var token = req.body.token || req.param('token') || req.headers['x-access-token']
       // 2 - If we find a token, we will use mySpecialSecret to try and decode it
       //      - if it can't be decoded, send the user an error that they don't have the right token
