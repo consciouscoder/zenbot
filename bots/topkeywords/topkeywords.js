@@ -1,11 +1,55 @@
 var request = require("request"),
 	cheerio = require("cheerio"),
 	//url = "https://www.google.com/search?q=data+mining",
-	url = "https://www.google.com/search?q=yoga",
+	url = "https://www.google.com/search?q=coder+bootcamp",
 
 	corpus = {},
 	totalResults = 0,
 	resultsDownloaded = 0;
+
+// Filter out common words
+function wordOK(word) {
+		switch (word) {
+	    case 'ffffff':
+	    case 'divubergridcell':
+	    case 'isbn':
+	    case 'width':
+			case 'ubergrid':
+			case 'ubergridcelltitle':
+			case 'ubergridhover':
+			case 'function':
+			case 'backgroundcolor':
+			case 'rgba':
+			case 'left':
+			case 'color':
+			case 'with':
+			case 'that':
+			case 'they':
+			case 'none':
+			case 'this':
+			case 'will':
+			case 'more':
+			case 'size':
+			case 'have':
+			case 'your':
+			case 'from':
+			case 'what':
+			case 'their':
+			case 'length':
+			case 'also':
+			case 'typeof':
+			case 'undefined':
+			case 'containerid':
+			case 'contentid':
+			case 'than':
+			case 'them':
+			case 'false':
+			case 'true':
+	        return false
+			default:
+					return true
+		}
+}
 
 function callback () {
 	resultsDownloaded++;
@@ -18,10 +62,12 @@ function callback () {
 
 	// stick all words in an array
 	for (prop in corpus) {
-		words.push({
-			word: prop,
-			count: corpus[prop]
-		});
+		if (wordOK(prop)) {
+			words.push({
+				word: prop,
+				count: corpus[prop]
+			});
+		}
 	}
 
 	// sort array based on how often they occur

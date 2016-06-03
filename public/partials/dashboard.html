@@ -22,12 +22,15 @@
       <div style="box-twitter-buttons">
         <button class="btn btn-primary btn" type="submit" ng-click="bCtrl.twitterBotNode()">Scrape!</button>
         <button class="btn btn-primary btn" type="submit" ng-click="bCtrl.twitterSaveData()">Save Scrape Data</button>
+        <button id="wordCloudButton"class="btn btn-primary btn" type="submit" ng-click="bCtrl.twitterWordCloud()">Word Cloud</button>
       </div>
 
-      <div style={width:50px; height:50px;}>
+      <div class="box-loading">
         <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
         <span class="sr-only">Loading...</span>
       </div>
+
+      <div id="vis"></div>
 
     <div class="box-dash-data">
       <table class="table table-condensed">

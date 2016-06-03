@@ -23,7 +23,7 @@
       //====== Save Twitter Scrape to Data Temple =======
       bCtrl.twitterSaveData = function() {
 
-          bCtrl.twitterData = {  
+          bCtrl.twitterData = {
                            twitterName: bCtrl.twitterUser,
                                 tweets: bCtrl.twitterBotArray }
 
@@ -31,7 +31,12 @@
       }
       //=================================================
 
-
+      bCtrl.twitterWordCloud = function() {
+            // console.log('word freq: ', wordFrequency(bCtrl.twitterBotArray.join()))
+            bCtrl.wordFrequencyArray = wordFrequency(bCtrl.twitterBotArray.join())
+            console.log('word freq: ', JSON.stringify(bCtrl.wordFrequencyArray))
+            drawWordCloud(bCtrl.wordFrequencyArray)
+      }
 
       // bCtrl.page = $state.current.name
       //
