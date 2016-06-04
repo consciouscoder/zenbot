@@ -2,6 +2,7 @@
   angular.module('botFactory', [])
     .factory('botDataFactory', botDataFactory)
     .factory('twitterBotFactory', twitterBotFactory) //['$scope', function($scope){}]
+    .factory('googleBotFactory', googleBotFactory)
 
     botDataFactory.$inject = ['$http']
 
@@ -32,7 +33,7 @@
 
     // ===== Factory for Twitter Scraper =====
 
-    twitterBotFactory.$inject = ['$http']  // ['$scope,'$http']
+    twitterBotFactory.$inject = ['$http']
 
     function twitterBotFactory ($http) {
 
@@ -43,7 +44,7 @@
 
                 console.log("connecting to Bot to scrape: ", twitterUser)
 
-                var url = "http://127.0.0.1:8080/api/bot"
+                var url = "http://127.0.0.1:8080/api/bot/twitter"
 
                return $http.post(url, {twitterUser: twitterUser })
                            .then(function(response) {
@@ -54,6 +55,31 @@
         }
 
         return twitterBot
+    }
+
+
+    googleBotFactory.$inject = ['$http']
+
+    function googleBotFactory ($http) {
+
+        var googleBot = {}
+
+
+        googleBot.botConnectNode = function(googleQuery) {
+
+                console.log("connecting to Bot to scrape: ", googleQuery)
+
+                var url = "http://127.0.0.1:8080/api/bot/google"
+
+               return $http.post(url, {googleQuery: googleQuery })
+                           .then(function(response) {
+
+                    console.log('googleBot response: ', response)
+                    return response
+                })
+        }
+
+        return googleBot
     }
 
 

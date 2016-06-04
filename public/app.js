@@ -180,6 +180,12 @@
         controller: 'botCtrl as bCtrl',
         authenticate: true
       })
+      .state('datatemple', {
+        url: '/datatemple',
+        templateUrl: './partials/datatemple.html',
+        controller: 'botCtrl as bCtrl',
+        authenticate: true
+      })
 
     $urlRouterProvider.otherwise('/')
   }

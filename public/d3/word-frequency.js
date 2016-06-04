@@ -23,20 +23,23 @@ function wordFrequency(inputString) {
   		}
   	}
 
-    // 160 words ideal
+    // 250 words ideal
     var wordCount = 0
 
   	var arr = []; // an array of objects to return
   	for (sWord in counts) {
-      wordCount++
-      console.log('word count: ', wordCount)
-      if (counts[sWord] > 2) {
-    		arr.push({
-    			key: sWord,
-    			value: counts[sWord]
-    		})
-      }
-  	}
+      // console.log('word count: ', wordCount)
+      // ==== Only accept words over below amount ====
+        if (counts[sWord] > 1) {
+          if (wordCount <= 250) {
+            wordCount++
+        		arr.push({
+        			key: sWord,
+        			value: counts[sWord]
+        		})
+          }
+        }
+    }
 
     // var returnArray = []
     //

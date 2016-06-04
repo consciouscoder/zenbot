@@ -21,7 +21,7 @@
       <BR>
       <div style="box-twitter-buttons">
         <button class="btn btn-primary btn" type="submit" ng-click="bCtrl.twitterBotNode()">Scrape!</button>
-        <button class="btn btn-primary btn" type="submit" ng-click="bCtrl.twitterSaveData()">Save Scrape Data</button>
+        <button class="btn btn-primary btn" ng-click="bCtrl.twitterSaveData()">Save Data</button>
         <!-- <button id="wordCloudButton"class="btn btn-primary btn" type="submit" ng-click="bCtrl.twitterWordCloud()">Word Cloud</button> -->
         <!-- Button trigger modal -->
         <button class="btn btn-primary btn" data-toggle="modal" data-target="#myModal" ng-click="bCtrl.twitterWordCloud()">
@@ -56,11 +56,13 @@
 
       <!-- <div id="vis"></div> -->
 
+<!-- NG-REPEAT of TwitterBotArray START -->
     <div class="box-dash-data">
       <table class="table table-condensed">
         <tr ng-repeat="tweet in bCtrl.twitterBotArray track by $index"><td>{{ tweet }}</td></tr>
       </table>
     </div>
+<!-- NG-REPEAT of TwitterBotArray END -->
 
     </p>
 </div>

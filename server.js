@@ -9,7 +9,8 @@ var express = require('express'),
   save = require("./models"),
   mySpecialSecret = "boom",
   request = require('request'),
-  apiRoutes = require('./routes');
+  apiRoutes = require('./routes'),
+  googleBot = require('./googlebot');
 
 app.use(cookieParser())
 app.use(bodyParser.json())
@@ -59,8 +60,10 @@ app.get('/api/bot', function(req, res) {
     );
 })
 
+
+
 // ================ HTTP POST ROUTE FROM ANGULAR CLIENT =================
-app.post('/api/bot', function(req, res) {
+app.post('/api/bot/twitter', function(req, res) {
 
     var twitterUser = req.body.twitterUser;
 
@@ -85,6 +88,59 @@ app.post('/api/bot', function(req, res) {
             }
         }
     )
+
+    //res.send(twitterUser);
+})
+// ======================================================================
+
+// ================ HTTP POST ROUTE FROM ANGULAR CLIENT =================
+app.post('/api/bot/google', function(req, res) {
+
+  // var pokemon = new Pokemon('Piakchu', 99);
+  // var age = pokemon.get_age();
+
+    var googleQuery = req.body.googleQuery;
+
+    console.log('received POST BODY for bot: ', req.body)
+    console.log('received POST googleQuery for bot: ', req.body.googleQuery)
+
+    var gbot = new googleBot (googleQuery, function(response){
+
+      res.send(response)
+    });
+
+
+
+    // Async call to googleBot
+    // var gbot = new googleBot(googleQuery, function(err, gbotData) {
+    //   if (err) {
+    //     console.log('googleBot error: ', err)
+    //   } else {
+    //     console.log('googleBot return: ', gbotData)
+    //     console.log('gbot resposne: ', gbot)
+    //   }
+    // })
+
+    // console.log('gbot resposne: ', gbot)
+
+    // request.post(
+    //     'http://127.0.0.1:8585',
+    //     { form: { twitterUser: twitterUser } },
+    //     function (error, response, body) {
+    //         if (!error && response.statusCode == 200) {
+    //             console.log('Response BODY from tweet bot server: ', body)
+    //
+    //             //=========== WAIT FOR RESPONSE FROM BOT SERVER THEN THE SEND TO CLIENT ============
+    //             res.send(body)
+    //             //=================================================================================
+    //
+    //         } else if (error) {
+    //             console.log('POST error to tweet bot server: ', error)
+    //         } else {
+    //             console.log('', response)
+    //         }
+    //     }
+    // )
 
     //res.send(twitterUser);
 })

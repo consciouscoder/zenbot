@@ -2,9 +2,9 @@
   angular.module('botController', [])
     .controller('botCtrl', botCtrl)
 
-    botCtrl.$inject = ['$state','$stateParams','twitterBotFactory','botDataFactory']
+    botCtrl.$inject = ['$state','$stateParams','twitterBotFactory','googleBotFactory','botDataFactory']
 
-    function botCtrl ($state, $stateParams, twitterBotFactory, botDataFactory) {
+    function botCtrl ($state, $stateParams, twitterBotFactory, googleBotFactory, botDataFactory) {
 
       var bCtrl = this
 
@@ -17,6 +17,18 @@
               // console.log('tweet array: ', logCtrl.twitterBotArray)
           })
       }
+
+
+      //====== Srape Google query and populate array ======
+      bCtrl.googleBotNode = function() {
+          googleBotFactory.botConnectNode(bCtrl.googleQuery).then(function(googleBotResponse){
+              console.log('googleBotResponse: ', googleBotResponse)
+
+              bCtrl.googleBotArray = googleBotResponse.data
+              console.log('google array: ', JSON.stringify(bCtrl.googleBotArray))
+          })
+      }
+
 
       //====== Save Twitter Scrape to Data Temple =======
       bCtrl.twitterSaveData = function() {
@@ -33,8 +45,17 @@
       bCtrl.twitterWordCloud = function() {
             // console.log('word freq: ', wordFrequency(bCtrl.twitterBotArray.join()))
             bCtrl.wordFrequencyArray = wordFrequency(bCtrl.twitterBotArray.join())
-            console.log('word freq: ', JSON.stringify(bCtrl.wordFrequencyArray))
+            console.log('twitter word freq: ', JSON.stringify(bCtrl.wordFrequencyArray))
             drawWordCloud(bCtrl.wordFrequencyArray)
+      }
+
+      //====== Word Cloud Visualization  =======
+
+      bCtrl.googleWordCloud = function() {
+            // console.log('word freq: ', wordFrequency(bCtrl.twitterBotArray.join()))
+            // bCtrl.wordFrequencyArray = wordFrequency(bCtrl.googleBotArray.join())
+            console.log('google word freq: ', JSON.stringify(bCtrl.googleBotArray))
+            drawWordCloud(bCtrl.googleBotArray)
       }
 
       // bCtrl.page = $state.current.name

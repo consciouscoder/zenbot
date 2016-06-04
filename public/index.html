@@ -55,8 +55,8 @@
                 <div class="img-rounded profile-img"></div>
                 buddha@enlightenment.org<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#/dashboard" id="action-dashboard">Dashboard - My ZenBots</a></li>
-                <li><a href="#">My Data Temples</a></li>
+                <li><a href="#/dashboard" id="action-dashboard">My ZenBots - Dashboard</a></li>
+                <li><a href="#/datatemple" id="action-datatemple">My Data Temples</a></li>
                 <li><a href="#">Settings</a></li>
                 <li role="separator" class="divider"></li>
                 <!-- <li class="dropdown-header">Nav header</li> -->
@@ -88,10 +88,21 @@
         // console.log('hiding nav drop down! Going to dashboard =====')
     });
 
+    $("#action-datatemple").click(function(e){
+        $("#navDropDown").next(".dropdown-menu").toggle();
+        // console.log('hiding nav drop down! Going to dashboard =====')
+    });
+
     $("#action-logoff").click(function(e){
         $("#navDropDown").next(".dropdown-menu").toggle();
         // console.log('hiding nav drop down! Going to logout =====')
     });
+
+    // $('#google-form').submit(function(event){
+    //   console.log('submit detected! ')
+    //   // event.preventDefault();
+    //
+    // });
 
 
     //

@@ -14,10 +14,71 @@
     <p>
       <BR>
       <div style="box-twitter-buttons">
-        <button class="btn btn-primary btn" type="submit" ng-click="bCtrl.GoogleBotNode()">Scrape!</button>
-        <button class="btn btn-primary btn" type="submit" ng-click="bCtrl.GoogleSaveData()">Save Scrape Data</button>
+        <form id="google-form">
+          <button class="btn btn-primary btn" type="button" ng-click="bCtrl.googleBotNode()">Scrape!</button>
+          <button class="btn btn-primary btn" ng-click="bCtrl.googleSaveData()">Save Data</button>
+          <button class="btn btn-primary btn" data-toggle="modal" data-target="#myModal" ng-click="bCtrl.googleWordCloud()">
+        </form>
+          Word Cloud
+        </button>
       </div>
 
+<!-- MODAL START -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">Word Cloud for Google query: {{ bCtrl.googleQuery }}</h4>
+            </div>
+            <div class="modal-body">
+              <div id="vis"></div>
+            </div>
+            <!-- <div class="modal-footer"> -->
+              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="bCtrl.googleWordCloud()">Re-Visualize</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+<!-- MODAL END -->
+
+<!-- <div>
+  <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            Word Analysis for scrape of Google query: {{ bCtrl.googleQuery }}
+          </h4>
+        </div>
+        <table class="table table-fixed">
+          <thead>
+            <tr>
+              <th class="col-xs-8">Word</th><th class="col-xs-2">Word Frequency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="googleResult in bCtrl.googleBotArray">
+              <td class="col-xs-8">{{ googleResult.key }}</td><td class="col-xs-2">{{ googleResult.value }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div> -->
+
+<!-- NG-REPEAT of GoogleBotArray START -->
+    <div class="box-dash-data">
+      <table class="table table" ng-show="bCtrl.googleBotArray[0].key.length">
+          <thead>
+            <tr>
+              <th class="col-xs-4">Word</th><th class="col-xs-1">Word Frequency</th>
+            </tr>
+          </thead>
+        <tr ng-repeat="googleResult in bCtrl.googleBotArray"><td class="col-xs-4">{{ googleResult.key }}</td><td class="col-xs-1">{{ googleResult.value }}</td></tr>
+      </table>
+    </div>
+<!-- NG-REPEAT of TwitterBotArray END -->
 
     </p>
 </div>
