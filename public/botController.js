@@ -31,6 +31,12 @@
           })
       }
 
+      //====== Start AutoBot! ======
+
+      bCtrl.startAutoBot = function() {
+
+      }
+
 
       //====== Save Twitter Scrape to Data Temple =======
       bCtrl.twitterSaveData = function() {
@@ -88,6 +94,7 @@
           })
       }
 
+      //===== Populate Data Temple's if state changes to 'datetemple' =====
       if ($state.is('datatemple')) {
         bCtrl.myTwitterDataTemple()
         bCtrl.myGoogleDataTemple()

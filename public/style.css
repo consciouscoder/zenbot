@@ -5,6 +5,21 @@
   max-height: 400px;
 }
 
+section#landing {
+    width: 20%;
+    margin: auto;
+    padding: 10px;
+}
+
+div#one {
+    width: 50%;
+    float: left;
+}
+
+div#two {
+    margin-left: 50%;
+}
+
 .box-container {
 	text-align: center;
 	vertical-align: middle;

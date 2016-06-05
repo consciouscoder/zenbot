@@ -7,19 +7,15 @@
     <p><b>Enter start URL:</b><BR>
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-      <input type="text" placeholder="Scrape which Google query?" ng-model="bCtrl.googleQuery" class="form-control">
+      <input type="text" placeholder="Start at which URL?" ng-model="bCtrl.googleQuery" class="form-control">
     </div>
 
     </p>
     <p>
       <BR>
       <div style="box-twitter-buttons">
-        <form id="google-form">
-          <button class="btn btn-primary btn" type="button" ng-click="bCtrl.googleBotNode()">Scrape!</button>
-          <button class="btn btn-primary btn" ng-click="bCtrl.googleSaveData()">Save Data</button>
-          <button class="btn btn-primary btn" data-toggle="modal" data-target="#myModal" ng-click="bCtrl.googleWordCloud()">
-        </form>
-          Word Cloud
+          <button class="btn btn-primary btn" type="button" ng-click="bCtrl.startAutoBot()">Start AutoBot!</button>
+
         </button>
       </div>
 

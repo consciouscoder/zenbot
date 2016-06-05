@@ -10,6 +10,7 @@ var casper = require("casper").create({
   pageSettings: {
     loadImages: false,
     loadPlugins: false,
+    waitTimeout: 10000,
     userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4'
   },
   clientScripts: ["vendor/jquery.min.js", "vendor/lodash.js"]
@@ -38,6 +39,10 @@ casper.start(url, function() {
   this.echo(this.getTitle());
 });
 
+casper.wait(1000, function() {
+    this.echo("I've waited for a second.");
+});
+
 casper.waitForSelector('.hotel-name', function() {
   console.log('hotel-name selector is loaded' );
 });
@@ -59,6 +64,11 @@ casper.then(function() {
   this.echo(names.length + ' names found: ');
   this.echo(' - ' + names.join('\n - '));
   this.echo(' - ' + prices.join('\n - ')).exit();
+});
+
+this.capture('hotels', undefined, {
+    format: 'jpg',
+    quality: 75
 });
 
 casper.run()
