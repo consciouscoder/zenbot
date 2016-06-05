@@ -84,6 +84,8 @@
             logCtrl.isLoggedIn = false
           }
       }
+
+
       // logCtrl.isLoggedIn = function() {
       //     if ($rootScope.currentUserSignedIn) {
       //       console.log('loggedIn: TRUE')

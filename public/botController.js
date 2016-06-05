@@ -8,6 +8,8 @@
 
       var bCtrl = this
 
+      console.log('current state: ', $state.current.name)
+
       //====== Srape Twitter user and populate array ======
       bCtrl.twitterBotNode = function() {
           twitterBotFactory.botConnectNode(bCtrl.twitterUser).then(function(twitterBotResponse){
@@ -73,7 +75,7 @@
       bCtrl.myTwitterDataTemple = function() {
           botDataFactory.showAll().then(function(response) {
               bCtrl.myDataTemplesTwitterArray = response
-              console.log('twitter data temple: ', response)        
+              console.log('twitter data temple: ', response)
           })
       }
 
@@ -84,6 +86,11 @@
               bCtrl.myDataTemplesGoogleArray = response
               console.log('google data temple: ', response)
           })
+      }
+
+      if ($state.is('datatemple')) {
+        bCtrl.myTwitterDataTemple()
+        bCtrl.myGoogleDataTemple()
       }
 
 
