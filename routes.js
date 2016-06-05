@@ -3,9 +3,11 @@ var router = require('express').Router(),
   mySpecialSecret = "boom",
   jwt = require('jsonwebtoken')
 
+router.route('/datatemple2')
+  .get(authorize, dataControl.all2)
 router.route('/datatemple')
-  .get(dataControl.all)
-  .post(authorize,dataControl.create)
+  .get(authorize, dataControl.all)
+  .post(authorize, dataControl.create)
 router.route('/datatemple/:id')
   .put(dataControl.update)
   .delete(dataControl.delete)

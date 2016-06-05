@@ -2,27 +2,23 @@ var  mongoose = require("mongoose")
 var bcrypt = require('bcryptjs')
 
 var twitterScrapSchema = mongoose.Schema({
-    // username: {
-    //   type: String,
-    //   unique: true
-    // },
-    // password: String,
+
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     twitterName: String,
     tweets: []
+
   })
 
 var googleScrapeSchema = mongoose.Schema({
-    username: {
-      type: String,
-      unique: true
-    },
-    password: String,
+
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     googleQuery: String,
-    topWords: {word : String, count : Number}
+    topWords: [{key : String, value : Number}]
+
   })
 
 var userSchema = mongoose.Schema({
+
     username: {
       type: String,
       unique: true
@@ -30,6 +26,7 @@ var userSchema = mongoose.Schema({
     password: String,
     twitterScrapes: [twitterScrapSchema],
     googleWordScrapes: [googleScrapeSchema]
+
   })
 
 userSchema.pre('save', function(next) {

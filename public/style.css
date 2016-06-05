@@ -51,6 +51,13 @@
   width: 50px;
 }
 
+/* ---- Data Temples ------*/
+
+.box-dash-temple-data {
+  margin: 5px;
+  margin-top: 15px;
+}
+
 /* ------------ Full-screen Bootstrap Modal ---------*/
 .modal-dialog {
   width: 100%;

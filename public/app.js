@@ -186,6 +186,12 @@
         controller: 'botCtrl as bCtrl',
         authenticate: true
       })
+      .state('autobot', {
+        url: '/autobot',
+        templateUrl: './partials/autobot.html',
+        controller: 'botCtrl as bCtrl',
+        authenticate: true
+      })
 
     $urlRouterProvider.otherwise('/')
   }

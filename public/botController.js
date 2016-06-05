@@ -40,6 +40,16 @@
           botDataFactory.create(bCtrl.twitterData)
       }
 
+      //====== Save Twitter Scrape to Data Temple =======
+      bCtrl.googleSaveData = function() {
+
+          bCtrl.googleData = {
+                           googleQuery: bCtrl.googleQuery,
+                              topWords: bCtrl.googleBotArray }
+
+          botDataFactory.create(bCtrl.googleData)
+      }
+
       //====== Word Cloud Visualization  =======
 
       bCtrl.twitterWordCloud = function() {
@@ -57,6 +67,25 @@
             console.log('google word freq: ', JSON.stringify(bCtrl.googleBotArray))
             drawWordCloud(bCtrl.googleBotArray)
       }
+
+      //====== My Twitter Data Temples -- Populate Data Tables for user's My Data Temples page ======
+
+      bCtrl.myTwitterDataTemple = function() {
+          botDataFactory.showAll().then(function(response) {
+              bCtrl.myDataTemplesTwitterArray = response
+              console.log('twitter data temple: ', response)        
+          })
+      }
+
+      //====== My Google Data Temples -- Populate Data Tables for user's My Data Temples page ======
+
+      bCtrl.myGoogleDataTemple = function() {
+          botDataFactory.showAll2().then(function(response) {
+              bCtrl.myDataTemplesGoogleArray = response
+              console.log('google data temple: ', response)
+          })
+      }
+
 
       // bCtrl.page = $state.current.name
       //

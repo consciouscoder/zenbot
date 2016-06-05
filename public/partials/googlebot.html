@@ -68,16 +68,21 @@
 </div> -->
 
 <!-- NG-REPEAT of GoogleBotArray START -->
+<div class="container-fluid">
     <div class="box-dash-data">
       <table class="table table" ng-show="bCtrl.googleBotArray[0].key.length">
           <thead>
             <tr>
-              <th class="col-xs-4">Word</th><th class="col-xs-1">Word Frequency</th>
+              <th class="col-xs-4 col-lg-4">Word</th>
+              <th class="col-xs-8 col-lg-8">Word Frequency</th>
             </tr>
           </thead>
-        <tr ng-repeat="googleResult in bCtrl.googleBotArray"><td class="col-xs-4">{{ googleResult.key }}</td><td class="col-xs-1">{{ googleResult.value }}</td></tr>
+        <tr ng-repeat="googleResult in bCtrl.googleBotArray">
+          <td class="col-xs-4 col-lg-4">{{ googleResult.key }}</td>
+          <td class="col-xs-8 col-lg-8">{{ googleResult.value }}</td></tr>
       </table>
     </div>
+</div>
 <!-- NG-REPEAT of TwitterBotArray END -->
 
     </p>

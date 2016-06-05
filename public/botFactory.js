@@ -21,8 +21,17 @@
       botData.delete = function(id){
           return $http.delete('/api/datatemple/'+id)
       }
+      // Get all Twitter Data Temples
       botData.showAll = function(){
-          return $http.get('/api/datatemple')
+          return $http.get('/api/datatemple').then(function(response) {
+            return response.data
+          })
+      }
+      // Get all Google Data Temples
+      botData.showAll2 = function(){
+          return $http.get('/api/datatemple2').then(function(response) {
+            return response.data
+          })
       }
       botData.showOne = function(id){
           return $http.get('/api/datatemple/'+id)
