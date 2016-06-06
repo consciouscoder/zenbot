@@ -2,9 +2,9 @@
   angular.module('botController', [])
     .controller('botCtrl', botCtrl)
 
-    botCtrl.$inject = ['$state','$stateParams','twitterBotFactory','googleBotFactory','botDataFactory']
+    botCtrl.$inject = ['$state','$stateParams','twitterBotFactory','googleBotFactory','autoBotFactory','botDataFactory']
 
-    function botCtrl ($state, $stateParams, twitterBotFactory, googleBotFactory, botDataFactory) {
+    function botCtrl ($state, $stateParams, twitterBotFactory, googleBotFactory, autoBotFactory, botDataFactory) {
 
       var bCtrl = this
 
@@ -34,7 +34,12 @@
       //====== Start AutoBot! ======
 
       bCtrl.startAutoBot = function() {
+          autoBotFactory.botConnectNode(bCtrl.autoQuery).then(function(autoBotResponse){
+              console.log('autoBotResponse: ', autoBotResponse)
 
+              bCtrl.autoBotArray = autoBotResponse.data
+              console.log('autobot array: ', JSON.stringify(bCtrl.autoBotArray))
+          })
       }
 
 

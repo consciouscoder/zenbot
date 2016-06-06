@@ -108,7 +108,36 @@ app.post('/api/bot/google', function(req, res) {
 
       res.send(response)
     });
+})
 
+
+// ================ HTTP POST ROUTE FROM ANGULAR CLIENT =================
+app.post('/api/bot/auto', function(req, res) {
+
+    var autoUser = req.body.autoUser;
+
+    console.log('received POST BODY for bot: ', req.body)
+    console.log('received POST autoUser for bot: ', req.body.autoUser)
+
+    request.post(
+        'http://127.0.0.1:8586',
+        { form: { autoUser: autoUser } },
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log('Response BODY from auto bot server: ', body)
+
+                //=========== WAIT FOR RESPONSE FROM BOT SERVER THEN THE SEND TO CLIENT ============
+                res.send(body)
+                //=================================================================================
+
+            } else if (error) {
+                console.log('POST error to auto bot server: ', error)
+            } else {
+                console.log('', response)
+            }
+        }
+    )
+})
 
 
     // Async call to googleBot
@@ -143,7 +172,7 @@ app.post('/api/bot/google', function(req, res) {
     // )
 
     //res.send(twitterUser);
-})
+
 // ======================================================================
 
 app.post('/login', function(req, res) {

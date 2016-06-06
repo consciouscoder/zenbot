@@ -3,9 +3,11 @@ var bcrypt = require('bcryptjs')
 
 var twitterScrapSchema = mongoose.Schema({
 
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    user: {
+      type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     twitterName: String,
-    tweets: []
+    tweets: [],
+    createdAt: {type: Date, default: Date.now}
 
   })
 
@@ -13,7 +15,8 @@ var googleScrapeSchema = mongoose.Schema({
 
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     googleQuery: String,
-    topWords: [{key : String, value : Number}]
+    topWords: [{key : String, value : Number}],
+    createdAt: {type: Date, default: Date.now}
 
   })
 

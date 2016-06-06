@@ -3,6 +3,7 @@
     .factory('botDataFactory', botDataFactory)
     .factory('twitterBotFactory', twitterBotFactory) //['$scope', function($scope){}]
     .factory('googleBotFactory', googleBotFactory)
+    .factory('autoBotFactory', autoBotFactory)
 
     botDataFactory.$inject = ['$http']
 
@@ -89,6 +90,31 @@
         }
 
         return googleBot
+    }
+
+
+    autoBotFactory.$inject = ['$http']
+
+    function autoBotFactory ($http) {
+
+        var autoBot = {}
+
+
+        autoBot.botConnectNode = function(autoQuery) {
+
+                console.log("connecting to Bot to scrape: ", autoQuery)
+
+                var url = "http://127.0.0.1:8080/api/bot/auto"
+
+               return $http.post(url, {autoQuery: autoQuery })
+                           .then(function(response) {
+
+                    console.log('autoBot response: ', response)
+                    return response
+                })
+        }
+
+        return autoBot
     }
 
 

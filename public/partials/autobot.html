@@ -7,10 +7,57 @@
     <p><b>Enter start URL:</b><BR>
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-      <input type="text" placeholder="Start at which URL?" ng-model="bCtrl.googleQuery" class="form-control">
-    </div>
-
+    <p>
+      <input type="text" placeholder="Start at which URL?" ng-model="bCtrl.autoStartURL" class="form-control">
     </p>
+    </div>
+    </p>
+
+    <p><b>Enter login:</b><BR>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+    <p>
+      <input type="text" placeholder="What is the login?" ng-model="bCtrl.autoLogin" class="form-control">
+    </p>
+    </div>
+    </p>
+
+    <p><b>Enter password:</b><BR>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+    <p>
+      <input type="password" placeholder="What is the password?" ng-model="bCtrl.autoPassword" class="form-control">
+    </p>
+    </div>
+    </p>
+
+    <p><b>Automate actions on this URL:</b><BR>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+    <p>
+      <input type="text" placeholder="Which URL do you want to automate actions?" ng-model="bCtrl.autoActionURL" class="form-control">
+    </p>
+    </div>
+    </p>
+
+    <p><b>Class or XPath selector:</b><BR>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+    <p>
+      <input type="text" placeholder="Selector(s) to select?" ng-model="bCtrl.autoClassSelector" class="form-control">
+    </p>
+    </div>
+    </p>
+
+    <p><b>Action:</b><BR>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+    <p>
+      <input type="text" placeholder="Action to invoke on above selector?" ng-model="bCtrl.autoAction" class="form-control">
+    </p>
+    </div>
+    </p>
+
     <p>
       <BR>
       <div style="box-twitter-buttons">
