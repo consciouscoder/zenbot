@@ -114,14 +114,14 @@ app.post('/api/bot/google', function(req, res) {
 // ================ HTTP POST ROUTE FROM ANGULAR CLIENT =================
 app.post('/api/bot/auto', function(req, res) {
 
-    var autoUser = req.body.autoUser;
+    var autoObj = req.body;
 
     console.log('received POST BODY for bot: ', req.body)
-    console.log('received POST autoUser for bot: ', req.body.autoUser)
+    console.log('received POST autoUser for bot: ', req.body.autoLogin)
 
     request.post(
         'http://127.0.0.1:8586',
-        { form: { autoUser: autoUser } },
+        { form: autoObj },
         function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log('Response BODY from auto bot server: ', body)

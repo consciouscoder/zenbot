@@ -106,7 +106,7 @@
 
                 var url = "http://127.0.0.1:8080/api/bot/auto"
 
-               return $http.post(url, {autoQuery: autoQuery })
+               return $http.post(url, autoQuery)
                            .then(function(response) {
 
                     console.log('autoBot response: ', response)

@@ -1,4 +1,4 @@
-<div class="box-dashboard">
+<div class="container">
 
       <H3>AutoBot - Automation Bot</H3>
 
@@ -6,7 +6,7 @@
 
     <p><b>Enter start URL:</b><BR>
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+      <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
     <p>
       <input type="text" placeholder="Start at which URL?" ng-model="bCtrl.autoStartURL" class="form-control">
     </p>
@@ -15,7 +15,7 @@
 
     <p><b>Enter login:</b><BR>
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+      <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
     <p>
       <input type="text" placeholder="What is the login?" ng-model="bCtrl.autoLogin" class="form-control">
     </p>
@@ -24,7 +24,7 @@
 
     <p><b>Enter password:</b><BR>
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+      <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
     <p>
       <input type="password" placeholder="What is the password?" ng-model="bCtrl.autoPassword" class="form-control">
     </p>
@@ -33,7 +33,7 @@
 
     <p><b>Automate actions on this URL:</b><BR>
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+      <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
     <p>
       <input type="text" placeholder="Which URL do you want to automate actions?" ng-model="bCtrl.autoActionURL" class="form-control">
     </p>
@@ -42,30 +42,69 @@
 
     <p><b>Class or XPath selector:</b><BR>
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+      <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
     <p>
       <input type="text" placeholder="Selector(s) to select?" ng-model="bCtrl.autoClassSelector" class="form-control">
     </p>
     </div>
     </p>
 
-    <p><b>Action:</b><BR>
+    <p><b>Action on above selector:</b><BR>
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-    <p>
-      <input type="text" placeholder="Action to invoke on above selector?" ng-model="bCtrl.autoAction" class="form-control">
-    </p>
+      <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
+
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" ng-model="bCtrl.autoAction" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Click
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a href="">Click</a></li>
+          <li><a href="">Grab innerHTML</a></li>
+          <li><a href="">Grab outerHTML</a></li>
+        </ul>
+      </div>
+
     </div>
     </p>
 
+    <BR>
     <p>
-      <BR>
       <div style="box-twitter-buttons">
           <button class="btn btn-primary btn" type="button" ng-click="bCtrl.startAutoBot()">Start AutoBot!</button>
 
         </button>
       </div>
+    </p>
+    <BR>
 
+      <div ng-show="bCtrl.checkLoading()" aria-busy="true" aria-label="Loading" role="progressbar" class="box-autobot-loading">
+        <div class="swing">
+          <div class="swing-l"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div class="swing-r"></div>
+        </div>
+        
+        <div class="shadow">
+          <div class="shadow-l"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div class="shadow-r"></div>
+        </div>
+       </div>
+
+    <p>
+      <div ng-show="bCtrl.autoScreenCapture" class="alert alert-success" role="alert">
+        Success! AutoBot has automated your tasks for <B>{{ bCtrl.autoActionURL }}</B> -- Screenshot: <a href=".\screencaptures\{{ bCtrl.autoScreenCapture }}" target="_blank">{{ bCtrl.autoScreenCapture }}</a>
+
+      </div>
 
     </p>
 </div>

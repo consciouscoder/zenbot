@@ -1,4 +1,5 @@
-<div class="box-dashboard">
+
+<div class="container">
 
       <H3>Google Scraper Bot</H3>
 
@@ -17,14 +18,18 @@
         <form id="google-form">
           <button class="btn btn-primary btn" type="button" ng-click="bCtrl.googleBotNode()">Scrape!</button>
           <button class="btn btn-primary btn" ng-click="bCtrl.googleSaveData()">Save Data</button>
-          <button class="btn btn-primary btn" data-toggle="modal" data-target="#myModal" ng-click="bCtrl.googleWordCloud()">
+          <button class="btn btn-primary btn" data-toggle="modal" data-target="#myModal" ng-click="bCtrl.drawGoogleWordCloud()">
         </form>
           Word Cloud
         </button>
       </div>
 
+      <div ng-show="bCtrl.googleWordCloud">
+        <div class="modal-body" id="vis"></div>
+      </div>
+
 <!-- MODAL START -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -34,14 +39,16 @@
             <div class="modal-body">
               <div id="vis"></div>
             </div>
-            <!-- <div class="modal-footer"> -->
+
               <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="bCtrl.googleWordCloud()">Re-Visualize</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <!-- </div> -->
+
           </div>
         </div>
-      </div>
+      </div> -->
 <!-- MODAL END -->
+
+<div class="loader" ng-show="bCtrl.checkLoading()"></div>
 
 <!-- <div>
   <div class="row">

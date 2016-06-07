@@ -20,14 +20,37 @@ server.listen(ipAndPort, function(request, response) {
   console.log('Request at ' + new Date());
   console.log(JSON.stringify(request, null, 4));
 
+  var requestObject = {};
+  var autoStartURL = "";
+  var autoLogin = "";
+  var autoPassword = "";
+  var autoActionURL = "";
+  var autoClassSelector = "";
+  var autoAction = "";
+
+  var upVotes = [];
+  var upVoteCounter = 0;
+  var screenCap = "";
 
   if (request.method == 'POST') {
       console.log("POST params should be next: ");
       console.log(JSON.stringify(request.post));//dump
-      console.log(request.post['twitterUser']);
-      twitterUser = request.post['twitterUser']
-      // code = response.statusCode = 200;
-      // response.write(code);
+
+      requestObject = request.post;
+
+      autoStartURL = requestObject.autoStartURL;
+      autoLogin = requestObject.autoLogin;
+      autoPassword = requestObject.autoPassword;
+      autoActionURL = requestObject.autoActionURL;
+      autoClassSelector = requestObject.autoClassSelector;
+      autoAction = requestObject.autoAction;
+
+      console.log('autoStartURL: ', autoStartURL);
+      console.log('autoLogin: ', autoLogin);
+      console.log('autoPassword: ', autoPassword);
+      console.log('autoActionURL: ', autoActionURL);
+      console.log('autoClassSelector: ', autoClassSelector);
+      console.log('autoAction: ', autoAction);
   }
 
 
@@ -37,9 +60,7 @@ server.listen(ipAndPort, function(request, response) {
   response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:8080");
   // response.headers();
 
-
-  console.log('request header Twitter User: ', request.headers.twitterUser)
-  console.log('request POST for Twitter User: ', twitterUser)
+  // console.log('request POST for Twitter User: ', twitterUser)
 
   //fs = require('fs')
 
@@ -64,8 +85,9 @@ var casper = require('casper').create({
 // var username = 'FromAtoZen';
 // var passwd = 'joshua12';
 
-var upVotes = [];
-var upVoteCounter = 0;
+// var upVotes = [];
+// var upVoteCounter = 0;
+// var screenCap = ""
 
 
 var x = require('casper').selectXPath;
@@ -89,9 +111,12 @@ casper.start("https://www.reddit.com/login", function() {
   //   }, true);
   // });
 
+  // ============ ERROR CHECKING =========================================
+
   casper.on('error', function (msg, backtrace) {
       this.echo(JSON.stringify({msg: msg, backtrace: backtrace}, null, 2));
-      this.die('internal errors.');
+
+      // this.die('internal errors.'); // DO NOT DIE!
   });
 
   casper.then(function(){
@@ -137,9 +162,14 @@ casper.start("https://www.reddit.com/login", function() {
 // }
 //getElementsByClassName
 
+
 casper.then(function(){
 
-  upVoteCounter = document.getElementsByClassName('up').length;
+
+  // upVoteCounter = document.getElementsByClassName('up').length;
+
+  upVoteCounter = document.querySelectorAll("div.arrow.up.login-required.access-required").length;
+  this.echo('upVoteCounter: ', upVoteCounter);
 
 	var images = this.evaluate(function(){
 		//var facebookImages = document.getElementsByTagName('img');
@@ -163,7 +193,11 @@ casper.then(function(){
         upVotes[i+4].click();
         upVotes[i+5].click();
         upVotes[i+6].click();
+
+        upVoteCounter = upVotes.length;
+
 		}
+
     for(var i = 0; i < upVotes.length; i++) {
 			// if(facebookImages[i].height >= 100 && facebookImages[i].width >= 100)
 				// allSrc.push(facebookImages[i].id);
@@ -183,6 +217,7 @@ casper.then(function(){
         upVotes[i+5].click();
         upVotes[i+6].click();
 		}
+
     for(var i = 0; i < upVotes.length; i++) {
 			// if(facebookImages[i].height >= 100 && facebookImages[i].width >= 100)
 				// allSrc.push(facebookImages[i].id);
@@ -203,18 +238,28 @@ casper.then(function(){
         upVotes[i+6].click();
 		}
 
-	  //  console.log(images);
-		// return JSON.stringify(allSrc);
-	});
+}); // evaluate
+
 
   console.log('upVotes.length: ', upVoteCounter)
 
-  casper.wait(500, function() {
+  casper.wait(1000, function() {
       this.echo("I've waited for 3 seconds.");
-      casper.capture("reddit.png");
+      screenCap = "reddit-" + makeid() + ".png";
+      casper.capture("../../public/screencaptures/" + screenCap);
   });
 
 })
+
+function makeid() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for( var i=0; i < 8; i++ )
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
 
 casper.run(function(){
     console.log('\n\nFinished')
@@ -224,11 +269,12 @@ casper.run(function(){
 
     console.log('upVoteCount : ', upVoteCounter)
 
-    var body = { upVoteCount : upVoteCounter }
+    var body = { "upVoteCount" : upVoteCounter,
+                 "screenCap"   : screenCap }
 
     //response.write(body);
       //JSON.stringify();
-    response.write(body);
+    response.write(JSON.stringify(body));
     response.close();
 });
 

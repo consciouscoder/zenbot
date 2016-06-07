@@ -55,24 +55,12 @@
       // logCtrl.loggedIn = false
       logCtrl.page = 'Login'
 
-      // ------ test for authentication routing ----------
-      //
-      // $http.get('/api/friends')
-      //   .then(function(response){
-      //     console.log(response)
-      //     logCtrl.friends = response.data.friends[0]
-      //     console.log(logCtrl.friends)
-      //   })
-      //
-      // if ($state.is('logout')) {
-      //   console.log('logging off!')
-      //   // $rootScope.currentUserSignedIn = false
-      //   $window.localStorage.removeItem('token')
-      //   $state.go('login')
-      //   logCtrl.checkLogIn()
-      // }
 
-      logCtrl.isLoggedIn = false
+
+      $window.isLoading = $rootScope.isLoading
+      console.log('$window.isLoading: ',$window.isLoading)
+
+      // logCtrl.isLoggedIn = false
 
       logCtrl.checkLogIn = function() {
           var token = $window.localStorage.getItem('token')
@@ -84,24 +72,8 @@
             logCtrl.isLoggedIn = false
           }
       }
+      logCtrl.checkLogIn()
 
-
-      // logCtrl.isLoggedIn = function() {
-      //     if ($rootScope.currentUserSignedIn) {
-      //       console.log('loggedIn: TRUE')
-      //       return true
-      //     } else {
-      //       console.log('loggedIn: FALSE')
-      //       return false
-      //     }
-      // }
-
-      //
-      // logCtrl.twitterBot = function() {
-      //     twitterBotFactory.botConnect('realDonaldTrump').then(function(twitterBotResponse){
-      //         console.log('twitterBotResponse', twitterBotResponse)
-      //     })
-      // }
 
         //create login method to send user info to server
         logCtrl.showLogin = function(){

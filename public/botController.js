@@ -2,43 +2,103 @@
   angular.module('botController', [])
     .controller('botCtrl', botCtrl)
 
-    botCtrl.$inject = ['$state','$stateParams','twitterBotFactory','googleBotFactory','autoBotFactory','botDataFactory']
+    botCtrl.$inject = ['$rootScope','$state','$stateParams','twitterBotFactory','googleBotFactory','autoBotFactory','botDataFactory']
 
-    function botCtrl ($state, $stateParams, twitterBotFactory, googleBotFactory, autoBotFactory, botDataFactory) {
+    function botCtrl ($rootScope, $state, $stateParams, twitterBotFactory, googleBotFactory, autoBotFactory, botDataFactory) {
 
       var bCtrl = this
 
       console.log('current state: ', $state.current.name)
 
+      bCtrl.autoStartURL = "http://www.reddit.com/login"
+      bCtrl.autoLogin = "FromAtoZen"
+      bCtrl.autoPassword = "******"
+      bCtrl.autoActionURL = "https://www.reddit.com/r/all"
+      bCtrl.autoClassSelector = "div.arrow.up.login-required.access-required"
+      bCtrl.autoAction = "CLICK"
+
+      bCtrl.checkLoading = function() {
+          if (bCtrl.isLoading) {
+            console.log('isLoading: TRUE')
+            return true
+          } else {
+            console.log('isLoading: FALSE')
+            return false
+          }
+      }
+
       //====== Srape Twitter user and populate array ======
       bCtrl.twitterBotNode = function() {
-          twitterBotFactory.botConnectNode(bCtrl.twitterUser).then(function(twitterBotResponse){
-              console.log('twitterBotResponse: ', twitterBotResponse)
 
-              bCtrl.twitterBotArray = twitterBotResponse.data
-              // console.log('tweet array: ', logCtrl.twitterBotArray)
-          })
+        if (bCtrl.twitterUser) {
+
+            bCtrl.isLoading = true
+            $rootScope.isLoading = true
+            bCtrl.twitterBotArray = []
+            bCtrl.twitterWordCloud = false
+
+            console.log('bCtrl.isLoading: ', bCtrl.isLoading)
+
+            twitterBotFactory.botConnectNode(bCtrl.twitterUser).then(function(twitterBotResponse){
+                console.log('twitterBotResponse: ', twitterBotResponse)
+
+                bCtrl.twitterBotArray = twitterBotResponse.data
+                // console.log('tweet array: ', logCtrl.twitterBotArray)
+
+                $rootScope.isLoading = false
+                bCtrl.isLoading = false
+            })
+
+        }
       }
 
 
       //====== Srape Google query and populate array ======
-      bCtrl.googleBotNode = function() {
-          googleBotFactory.botConnectNode(bCtrl.googleQuery).then(function(googleBotResponse){
-              console.log('googleBotResponse: ', googleBotResponse)
 
-              bCtrl.googleBotArray = googleBotResponse.data
-              console.log('google array: ', JSON.stringify(bCtrl.googleBotArray))
-          })
-      }
+      bCtrl.googleBotNode = function() {
+
+        if (bCtrl.googleQuery) {
+
+            bCtrl.isLoading = true
+            bCtrl.googleBotArray = ""
+            bCtrl.googleWordCloud = false
+
+            googleBotFactory.botConnectNode(bCtrl.googleQuery).then(function(googleBotResponse){
+                console.log('googleBotResponse: ', googleBotResponse)
+
+                bCtrl.googleBotArray = googleBotResponse.data
+                console.log('google array: ', JSON.stringify(bCtrl.googleBotArray))
+                bCtrl.isLoading = false
+
+                bCtrl.googleWordCloud = true
+            })
+        }
+    }
 
       //====== Start AutoBot! ======
 
       bCtrl.startAutoBot = function() {
+
+         bCtrl.isLoading = true
+         bCtrl.autoScreenCapture = ""
+
+         bCtrl.autoQuery = { autoStartURL : bCtrl.autoStartURL,
+                             autoLogin : bCtrl.autoLogin,
+                             autoPassword : bCtrl.autoPassword,
+                             autoActionURL : bCtrl.autoActionURL,
+                             autoClassSelector : bCtrl.autoClassSelector,
+                             autoAction : bCtrl.autoAction
+                            }
+
           autoBotFactory.botConnectNode(bCtrl.autoQuery).then(function(autoBotResponse){
               console.log('autoBotResponse: ', autoBotResponse)
 
-              bCtrl.autoBotArray = autoBotResponse.data
-              console.log('autobot array: ', JSON.stringify(bCtrl.autoBotArray))
+              bCtrl.autoBotResponseObj = autoBotResponse.data
+
+              bCtrl.autoScreenCapture = bCtrl.autoBotResponseObj.screenCap
+              console.log('autobot array: ', JSON.stringify(bCtrl.autoBotResponseObj))
+
+              bCtrl.isLoading = false
           })
       }
 
@@ -65,20 +125,53 @@
 
       //====== Word Cloud Visualization  =======
 
-      bCtrl.twitterWordCloud = function() {
-            // console.log('word freq: ', wordFrequency(bCtrl.twitterBotArray.join()))
-            bCtrl.wordFrequencyArray = wordFrequency(bCtrl.twitterBotArray.join())
-            console.log('twitter word freq: ', JSON.stringify(bCtrl.wordFrequencyArray))
-            drawWordCloud(bCtrl.wordFrequencyArray)
+      bCtrl.drawTwitterWordCloud = function() {
+
+            if (bCtrl.twitterBotArray) {
+
+                bCtrl.twitterWordCloud = true
+
+                // console.log('word freq: ', wordFrequency(bCtrl.twitterBotArray.join()))
+                bCtrl.wordFrequencyArray = wordFrequency(bCtrl.twitterBotArray.join())
+                console.log('twitter word freq: ', JSON.stringify(bCtrl.wordFrequencyArray))
+                drawWordCloud(bCtrl.wordFrequencyArray)
+            }
       }
+
+      bCtrl.checkTwitterWordCloud = function() {
+
+          if (bCtrl.twitterWordCloud) {
+            console.log('twitterWordCloud: TRUE')
+            return true
+          } else {
+            console.log('twitterWordCloud: FALSE')
+            return false
+          }
+      }
+
 
       //====== Word Cloud Visualization  =======
 
-      bCtrl.googleWordCloud = function() {
-            // console.log('word freq: ', wordFrequency(bCtrl.twitterBotArray.join()))
-            // bCtrl.wordFrequencyArray = wordFrequency(bCtrl.googleBotArray.join())
-            console.log('google word freq: ', JSON.stringify(bCtrl.googleBotArray))
-            drawWordCloud(bCtrl.googleBotArray)
+      bCtrl.drawGoogleWordCloud = function() {
+            if (bCtrl.googleBotArray) {
+
+                bCtrl.googleWordCloud = true
+                // console.log('word freq: ', wordFrequency(bCtrl.twitterBotArray.join()))
+                // bCtrl.wordFrequencyArray = wordFrequency(bCtrl.googleBotArray.join())
+                console.log('google word freq: ', JSON.stringify(bCtrl.googleBotArray))
+                drawWordCloud(bCtrl.googleBotArray)
+            }
+      }
+
+      bCtrl.checkGoogleWordCloud = function() {
+
+          if (bCtrl.googleWordCloud) {
+            console.log('googleWordCloud: TRUE')
+            return true
+          } else {
+            console.log('googleWordCloud: FALSE')
+            return false
+          }
       }
 
       //====== My Twitter Data Temples -- Populate Data Tables for user's My Data Temples page ======

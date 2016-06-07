@@ -2,6 +2,7 @@ function drawWordCloud(tagsArray) {
 
   if ($('#wordCloud').length) {
        console.log('svg wordCloud detected! Randomizing re-draw.')
+       //$('#wordCloud').remove('#wordCloud')
        return
   }
 
@@ -11,8 +12,11 @@ function drawWordCloud(tagsArray) {
 
   var fill = d3.scale.category20b();
 
-  var w = window.innerWidth,
-          h = window.innerHeight;
+  // var w = window.innerWidth,
+  //         h = window.innerHeight;
+
+  var w = 1000,
+          h = 800;
 
   var max,
           fontSize;
@@ -50,8 +54,11 @@ function drawWordCloud(tagsArray) {
   // };
 
   function draw(data, bounds) {
-      var w = window.innerWidth,
-          h = window.innerHeight;
+    var w = 1000,
+        h = 800;
+
+      // var w = window.innerWidth,
+      //     h = window.innerHeight;
 
           // console.log('w,h: ', w,h)
 

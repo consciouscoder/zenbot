@@ -1,4 +1,5 @@
-<div class="box-dashboard">
+
+<div class="container">
 
       <H3>Twitter Scraper Bot</H3>
 
@@ -24,7 +25,7 @@
         <button class="btn btn-primary btn" ng-click="bCtrl.twitterSaveData()">Save Data</button>
         <!-- <button id="wordCloudButton"class="btn btn-primary btn" type="submit" ng-click="bCtrl.twitterWordCloud()">Word Cloud</button> -->
         <!-- Button trigger modal -->
-        <button class="btn btn-primary btn" data-toggle="modal" data-target="#myModal" ng-click="bCtrl.twitterWordCloud()">
+        <button class="btn btn-primary btn" data-toggle="modal" data-target="#myModal" ng-click="bCtrl.drawTwitterWordCloud()">
           Word Cloud
         </button>
       </div>
@@ -37,8 +38,12 @@
       </ol>
     </p> -->
 
+    <div ng-show="bCtrl.twitterWordCloud">
+      <div class="modal-body" id="vis"></div>
+    </div>
+
 <!-- MODAL START -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -48,25 +53,50 @@
             <div class="modal-body">
               <div id="vis"></div>
             </div>
-            <!-- <div class="modal-footer"> -->
+             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="bCtrl.twitterWordCloud()">Re-Visualize</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <!-- </div> -->
+             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 <!-- MODAL END -->
 
-      <div class="box-loading">
-        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-        <span class="sr-only">Loading...</span>
-      </div>
+<div class="center" ng-show="bCtrl.checkLoading()">
+  <div class="bouncywrap">
+
+        <div class="dotcon dc1">
+        <div class="dot"></div>
+        </div>
+
+        <div class="dotcon dc2">
+        <div class="dot"></div>
+        </div>
+
+        <div class="dotcon dc3">
+        <div class="dot"></div>
+        </div>
+
+  </div>
+</div>
+
+
+<!-- <div id="shell" ng-show="bCtrl.checkLoading()">
+  <div id="bg">
+    <div id="bar"></div>
+  </div>
+</div> -->
 
       <!-- <div id="vis"></div> -->
 
 <!-- NG-REPEAT of TwitterBotArray START -->
     <div class="box-dash-data">
-      <table class="table table">
+      <table class="table table" ng-show="bCtrl.twitterBotArray[0].length">
+        <thead>
+          <tr>
+            <th class="col-xs-10 col-lg-10">Tweets from @{{ bCtrl.twitterUser }}</th>
+          </tr>
+        </thead>
         <tr ng-repeat="tweet in bCtrl.twitterBotArray track by $index"><td>{{ tweet }}</td></tr>
       </table>
     </div>
