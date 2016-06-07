@@ -2,9 +2,9 @@
   angular.module('botController', [])
     .controller('botCtrl', botCtrl)
 
-    botCtrl.$inject = ['$rootScope','$state','$stateParams','twitterBotFactory','googleBotFactory','autoBotFactory','botDataFactory']
+    botCtrl.$inject = ['$rootScope','$state','$stateParams','twitterBotFactory','googleBotFactory','autoBotFactory','botDataFactory','$location','$anchorScroll']
 
-    function botCtrl ($rootScope, $state, $stateParams, twitterBotFactory, googleBotFactory, autoBotFactory, botDataFactory) {
+    function botCtrl ($rootScope, $state, $stateParams, twitterBotFactory, googleBotFactory, autoBotFactory, botDataFactory, $location, $anchorScroll) {
 
       var bCtrl = this
 
@@ -136,6 +136,9 @@
                 bCtrl.wordFrequencyArray = wordFrequency(bCtrl.twitterBotArray.join())
                 console.log('twitter word freq: ', JSON.stringify(bCtrl.wordFrequencyArray))
                 drawWordCloud(bCtrl.wordFrequencyArray)
+
+                $location.hash('button-div')
+                $anchorScroll()
             }
       }
 

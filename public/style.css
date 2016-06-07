@@ -24,6 +24,11 @@ div#two {
   margin-top: 60px;
 }
 
+.btn:focus {
+  outline:none;
+  background-color: #337ab7;
+}
+
 .box-container {
 	text-align: center;
 	vertical-align: middle;
