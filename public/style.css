@@ -30,6 +30,23 @@ div#two {
   margin-top: 30px;
 }
 
+.invite-form {
+  width: 50%;
+  margin-left: 50%;
+  margin: 0 auto;
+}
+
+.box-inside-invite {
+  margin-top: 20px;
+  display: inline-block;
+  width: 400px;
+}
+
+.box-quote-login {
+  width: 50%;
+  margin: 0 auto;
+}
+
 .box-dashboard {
   width: 75%;
   margin: 40px;
@@ -37,6 +54,7 @@ div#two {
 }
 
 .box-dashboard-logo {
+  margin-left: 20px;
   display: inline;
   float: left;
 }
@@ -79,7 +97,7 @@ div#two {
 
 /* ------------ Full-screen Bootstrap Modal ---------*/
 
-.model-body {
+/*.model-body {
   width: 1100px;
   height: 800px;
   padding: 0;
@@ -96,7 +114,7 @@ div#two {
 .modal-content {
   height: 100%;
   border-radius: 0;
-}
+}*/
 
 
 /* ----------- profile pic ------------- */

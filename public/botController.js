@@ -60,16 +60,17 @@
         if (bCtrl.googleQuery) {
 
             bCtrl.isLoading = true
-            bCtrl.googleBotArray = ""
+            bCtrl.googleBotArray = []
             bCtrl.googleWordCloud = false
+            bCtrl.checkGoogleWordCloud()
 
             googleBotFactory.botConnectNode(bCtrl.googleQuery).then(function(googleBotResponse){
                 console.log('googleBotResponse: ', googleBotResponse)
 
                 bCtrl.googleBotArray = googleBotResponse.data
                 console.log('google array: ', JSON.stringify(bCtrl.googleBotArray))
-                bCtrl.isLoading = false
 
+                bCtrl.isLoading = false
                 bCtrl.googleWordCloud = true
             })
         }
@@ -156,8 +157,11 @@
             if (bCtrl.googleBotArray) {
 
                 bCtrl.googleWordCloud = true
+
                 // console.log('word freq: ', wordFrequency(bCtrl.twitterBotArray.join()))
                 // bCtrl.wordFrequencyArray = wordFrequency(bCtrl.googleBotArray.join())
+
+                bCtrl.wordFrequencyArray = bCtrl.googleBotArray
                 console.log('google word freq: ', JSON.stringify(bCtrl.googleBotArray))
                 drawWordCloud(bCtrl.googleBotArray)
             }
@@ -198,39 +202,6 @@
         bCtrl.myGoogleDataTemple()
       }
 
-
-      // bCtrl.page = $state.current.name
-      //
-      // if(bCtrl.page == 'edit'){
-      //   botDataFactory.showOne($stateParams.id)
-      //       .then(function(res) {
-      //           console.log(res);
-      //           bCtrl.newDataTemple = res.data
-      //       })
-      // }
-      //
-      // console.log($state.current);
-      //
-      // botDataFactory.showAll()
-      //        .then(function(response){
-      //     bCtrl.discs = response.data
-      // })
-
-      // bCtrl.submitBot = function(botData) {
-      //   botDataFactory.create(botData)
-      //     .then(function (res) {
-      //       console.log("new bot : ", res)
-      //     })
-      // }
-      //
-      // bCtrl.createDataTemple = function(){
-      //   bCtrl.page = "create"
-      //   $state.go('create')
-      // }
-      // bCtrl.editDisc = function(id){
-      //   bCtrl.page = "edit"
-      //   $state.go('edit', {id: id})
-      // }
     }
 
 }());

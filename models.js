@@ -32,6 +32,13 @@ var userSchema = mongoose.Schema({
 
   })
 
+  var inviteSchema = mongoose.Schema({
+
+      inviteName: String,
+      inviteEmail: String
+
+    })
+
 userSchema.pre('save', function(next) {
   var user = this
   var hashPassword = bcrypt.hashSync(user.password, 8)
@@ -48,7 +55,8 @@ userSchema.methods.authenticate = function(userPassword) {
 module.exports = {
     tScrap: mongoose.model("twitterScrap", twitterScrapSchema),
     gScrap: mongoose.model("googleScrap", googleScrapeSchema),
-    User: mongoose.model('User', userSchema)
+    User: mongoose.model('User', userSchema),
+    invite: mongoose.model('inviteData', inviteSchema)
 }
 
 // module.exports = mongoose.model("User", userSchema)

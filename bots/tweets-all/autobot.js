@@ -216,6 +216,52 @@ casper.then(function(){
         upVotes[i+4].click();
         upVotes[i+5].click();
         upVotes[i+6].click();
+
+        upVoteCounter = upVotes.length;
+
+		}
+
+    for(var i = 0; i < upVotes.length; i++) {
+			// if(facebookImages[i].height >= 100 && facebookImages[i].width >= 100)
+				// allSrc.push(facebookImages[i].id);
+
+        upVotes[i].click();
+        upVotes[i+1].click();
+        upVotes[i+2].click();
+        upVotes[i+3].click();
+        upVotes[i+4].click();
+        upVotes[i+5].click();
+        upVotes[i+6].click();
+        upVotes[i].click();
+        upVotes[i+1].click();
+        upVotes[i+2].click();
+        upVotes[i+3].click();
+        upVotes[i+4].click();
+        upVotes[i+5].click();
+        upVotes[i+6].click();
+
+        upVoteCounter = upVotes.length;
+
+		}
+
+    for(var i = 0; i < upVotes.length; i++) {
+			// if(facebookImages[i].height >= 100 && facebookImages[i].width >= 100)
+				// allSrc.push(facebookImages[i].id);
+
+        upVotes[i].click();
+        upVotes[i+1].click();
+        upVotes[i+2].click();
+        upVotes[i+3].click();
+        upVotes[i+4].click();
+        upVotes[i+5].click();
+        upVotes[i+6].click();
+        upVotes[i].click();
+        upVotes[i+1].click();
+        upVotes[i+2].click();
+        upVotes[i+3].click();
+        upVotes[i+4].click();
+        upVotes[i+5].click();
+        upVotes[i+6].click();
 		}
 
     for(var i = 0; i < upVotes.length; i++) {

@@ -94,7 +94,7 @@
       <table class="table table" ng-show="bCtrl.twitterBotArray[0].length">
         <thead>
           <tr>
-            <th class="col-xs-10 col-lg-10">Tweets from @{{ bCtrl.twitterUser }}</th>
+            <th class="col-xs-10 col-lg-10">The last 500 Tweets from @{{ bCtrl.twitterUser }}</th>
           </tr>
         </thead>
         <tr ng-repeat="tweet in bCtrl.twitterBotArray track by $index"><td>{{ tweet }}</td></tr>

@@ -16,6 +16,12 @@
           console.log("from factory: ", botData)
           return $http.post('/api/datatemple', botData)
       }
+
+      botData.createInvite = function(botData){
+          console.log("from factory: ", botData)
+          return $http.post('/api/invite', botData)
+      }
+
       botData.update = function(disc, id){
           return $http.put('/api/datatemple/'+id, botData)
       }

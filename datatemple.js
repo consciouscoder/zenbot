@@ -63,6 +63,25 @@ module.exports = {
     })
   },
 
+  createInvite : function(req,res) {
+    // console.log('datatemple.js req: ', req.body)
+
+      console.log('INVITE CREATE')
+      var botData = new dataTemple.invite (req.body)
+
+    // console.log('tScrape: ', botData)
+    botData.save(function(err, data){
+      if(err) {
+        res.json({message: "database error: ", error:err})
+        console.log("error:", err)
+      }
+      else {
+        res.json(data)
+        console.log('saved database: ', data)
+      }
+    })
+  },
+
   // createGoogleData : function(req,res) {
   //   var botData = new dataTemple.gScrap (req.body);
   //   botData.user = req.decoded.id

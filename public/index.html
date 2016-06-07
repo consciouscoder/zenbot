@@ -5,16 +5,12 @@
   <meta charset="utf-8">
   <title>zenbot</title>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"> -->
-  <!-- Compiled and minified CSS -->
+
 
   <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css" type="text/css">
-  <!--Pulling Awesome Font -->
-  <!-- <link src="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> -->
-  <!-- <script src="https://use.fontawesome.com/3d72649871.js"></script> -->
-
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css"> -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css" type="text/css"> -->
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" type="text/css">
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.js"></script>
@@ -57,7 +53,7 @@
               <ul class="dropdown-menu">
                 <li><a href="#/dashboard" id="action-dashboard">My ZenBots - Dashboard</a></li>
                 <li><a ng-click="logCtrl.popDataTemples()" href="#/datatemple" id="action-datatemple">My Data Temples</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a href="#/scheduler" id="action-scheduler">My Zen Scheduler</a></li>
                 <li role="separator" class="divider"></li>
                 <!-- <li class="dropdown-header">Nav header</li> -->
                 <li><a href="#" ng-click="logCtrl.logout()" id="action-logoff">Logout - buddha@enlightenment.org</a></li>
@@ -89,6 +85,11 @@
     });
 
     $("#action-datatemple").click(function(e){
+        $("#navDropDown").next(".dropdown-menu").toggle();
+        // console.log('hiding nav drop down! Going to dashboard =====')
+    });
+
+    $("#action-scheduler").click(function(e){
         $("#navDropDown").next(".dropdown-menu").toggle();
         // console.log('hiding nav drop down! Going to dashboard =====')
     });

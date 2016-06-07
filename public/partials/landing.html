@@ -4,22 +4,56 @@
       <img src=".\images\zenbot_landing3.jpg">
   </div>
 
-  <div class="landing-buttons">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Enlightenment is near...</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <div class="invite-form"> -->
+                    <form class="form-signin" ng-submit="logCtrl.login()">
+                      <h4 class="form-signin-heading"><p>Please enter your name and email.</p></h4>
+                        <p>We'll telepathically send you an email once we launch! Namaste.</p>
+                      <BR>
+                      <!-- type="email"  -->
+                      <input id="inputName" class="form-control" placeholder="Name" ng-model="logCtrl.inviteName">
+                      <input id="inputEmail" class="form-control" placeholder="Email address" ng-model="logCtrl.inviteEmail">
 
+                    </form>
+              <!-- </div> -->
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              <button type="button" class="btn btn-primary" ng-click="logCtrl.saveInvite()" data-dismiss="modal">Enlightenment!</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+</div>
+
+
+
+  <div class="box-quote-login">
     <blockquote>
       <p>"He who controls the information, controls the world."</p>
       <footer>Cosmo, <cite title="Source Title">Sneakers, 1992</cite></footer>
     </blockquote>
+  </div>
 
   <BR>
 
   <p>
-
-  <section id="landing">
-      <div id="one"><a href="#/invite" class="btn btn-lg btn-primary">Invite</a></div>
-      <div id="two" ng-show="logCtrl.checkLogIn"><a href="#/login" class="btn btn-lg btn-primary">Login</a></div>
-  </section>
-
+  <div class="landing-buttons">
+    <section id="landing">
+        <div id="one">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+              Invite
+          </button>
+        </div>
+        <div id="two" ng-show="logCtrl.checkLogIn"><a href="#/login" class="btn btn-lg btn-primary">Login</a></div>
+    </section>
   </p>
 
   </div>

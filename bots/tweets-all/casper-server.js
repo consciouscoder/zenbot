@@ -163,7 +163,7 @@ server.listen(ipAndPort, function(request, response) {
               });
 
               // ======= Stop after 500 tweets ======
-              if (count < 10) {
+              if (count < 25) {
                   RecursiveTriverse(this, nbLinks, stream);
               }
           }
@@ -177,7 +177,7 @@ server.listen(ipAndPort, function(request, response) {
         function pass () {
           this.then(function () {
             // ======= Stop after 500 tweets ======
-            if (count < 10) {
+            if (count < 25) {
               RecursiveTriverse(this, '/' + tweet_account_name, stream);
             }
           });

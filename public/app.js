@@ -47,9 +47,9 @@
 
     })
 
-    loginCtrl.$inject = ['$http','$state','$window','$rootScope','$location','twitterBotFactory']
+    loginCtrl.$inject = ['$http','$state','$window','$rootScope','$location','twitterBotFactory','botDataFactory']
     // LOGIN CONTROLLER
-    function loginCtrl ($http, $state, $window, $rootScope, $location, twitterBotFactory) {
+    function loginCtrl ($http, $state, $window, $rootScope, $location, twitterBotFactory, botDataFactory) {
 
       var logCtrl = this
       // logCtrl.loggedIn = false
@@ -98,6 +98,16 @@
                console.log("no token found")
              }
         })
+      }
+
+      logCtrl.saveInvite = function() {
+          console.log('Saving invite info: ', logCtrl.inviteName, logCtrl.inviteEmail)
+
+          logCtrl.inviteData = {
+                                 inviteName: logCtrl.inviteName,
+                                inviteEmail: logCtrl.inviteEmail }
+
+          botDataFactory.createInvite(logCtrl.inviteData)
       }
 
       // LOG OUT - Remove Token
@@ -166,6 +176,13 @@
         controller: 'botCtrl as bCtrl',
         authenticate: true
       })
+      .state('scheduler', {
+        url: '/scheduler',
+        templateUrl: './partials/scheduler.html',
+        controller: 'botCtrl as bCtrl',
+        authenticate: true
+      })
+
 
     $urlRouterProvider.otherwise('/')
   }
