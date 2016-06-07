@@ -10,7 +10,8 @@ var express = require('express'),
   mySpecialSecret = "boom",
   request = require('request'),
   apiRoutes = require('./routes'),
-  googleBot = require('./googlebot');
+  googleBot = require('./googlebot'),
+  cors = require('cors');
 
 app.use(cookieParser())
 app.use(bodyParser.json())
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(logger('dev'))
 app.use(express.static(__dirname + '/public'))
+app.use(cors())
 app.use('/api', apiRoutes)
 
 mongoose.connect('mongodb://localhost/zenbot')
