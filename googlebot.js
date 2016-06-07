@@ -24,6 +24,7 @@ module.exports = function(query, callback) {
 			corpus = {},
 			totalResults = 0,
 			resultsDownloaded = 0;
+			console.log('inside googlebot.js!')
 
 		// Filter out common words / HTML tags and JS
 		function wordOK(word) {
