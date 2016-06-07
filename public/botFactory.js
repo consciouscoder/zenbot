@@ -60,7 +60,7 @@
 
                 console.log("connecting to Bot to scrape: ", twitterUser)
 
-                var url = "http://127.0.0.1:8080/api/bot/twitter"
+                var url = "/api/bot/twitter"
 
                return $http.post(url, {twitterUser: twitterUser })
                            .then(function(response) {
@@ -85,7 +85,7 @@
 
                 console.log("connecting to Bot to scrape: ", googleQuery)
 
-                var url = "http://127.0.0.1:8080/api/bot/google"
+                var url = "/api/bot/google"
 
                return $http.post(url, {googleQuery: googleQuery })
                            .then(function(response) {
@@ -110,7 +110,7 @@
 
                 console.log("connecting to Bot to scrape: ", autoQuery)
 
-                var url = "http://127.0.0.1:8080/api/bot/auto"
+                var url = "/api/bot/auto"
 
                return $http.post(url, autoQuery)
                            .then(function(response) {
