@@ -5,7 +5,7 @@ function wordFrequency(inputString) {
 
   	// array of words to ignore
   	var ignore = ['and','the','to','a','of','for','as','i','with','it','is','on','that','this','can','in','be','has','have','if','&','-','@realdonaldtrump',
-                  '@berniesanders','@hillaryclinton','berniesanderscom','bernieto','#trump2016'];
+                  '@berniesanders','@hillaryclinton','berniesanderscom','bernieto','#trump2016','cnnit','at','are','am','by'];
   	ignore = (function(){
   		var o = {}; // object prop checking > in array checking
   		var iCount = ignore.length;

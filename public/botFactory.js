@@ -85,7 +85,9 @@
 
                 console.log("connecting to Bot to scrape: ", googleQuery)
 
-                var url = "/api/bot/google"
+                //var url = "/api/bot/google"
+                var url = "192.168.173.165:80/api/bot/google"
+
 
                return $http.post(url, {googleQuery: googleQuery })
                            .then(function(response) {

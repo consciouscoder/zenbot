@@ -146,6 +146,33 @@
             }
       }
 
+      bCtrl.drawTwitterWordCloudDataTemple = function(twitterDataTempleArray) {
+
+                // $state.go('googlebot')
+                bCtrl.twitterWordCloud = true
+
+                console.log('googleDataTempleArray: ', twitterDataTempleArray.topWords)
+
+                bCtrl.twitterBotArray = []
+
+                bCtrl.twitterDataTempleProcess = twitterDataTempleArray.topWords
+
+                for(var i=0; i < bCtrl.twitterDataTempleProcess.length; i++) {
+                  bCtrl.twitterBotArray.push({ "key" : bCtrl.twitterDataTempleProcess[i].key,
+                                            "value" : bCtrl.twitterDataTempleProcess[i].value
+                                          })
+                }
+
+
+                // console.log('word freq: ', wordFrequency(bCtrl.twitterBotArray.join()))
+                // bCtrl.wordFrequencyArray = wordFrequency(bCtrl.googleBotArray.join())
+
+                // bCtrl.wordFrequencyArray = bCtrl.googleBotArray
+                console.log('google word freq: ', JSON.stringify(bCtrl.twitterBotArray))
+                drawWordCloud(bCtrl.twitterBotArray, "vis2")
+
+      }
+
       bCtrl.checkTwitterWordCloud = function() {
 
           if (bCtrl.twitterWordCloud) {

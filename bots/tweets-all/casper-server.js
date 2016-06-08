@@ -141,7 +141,7 @@ server.listen(ipAndPort, function(request, response) {
           });
 
           for(var i=0; i < query.length; i++) {
-            tweetsString = query[i].replace(/((bit\.ly|youtu\.be|pic\.twitter\.com|t\.co|lnkd\.in|tcrn\.ch|amp\.twimg\.com|twitter\.com|donaldjtrump\.com|facebook\.com|hrc\.io|nyti\.ms)\S*)\b/g, "");
+            tweetsString = query[i].replace(/((bit\.ly|youtu\.be|pic\.twitter\.com|t\.co|lnkd\.in|tcrn\.ch|amp\.twimg\.com|twitter\.com|donaldjtrump\.com|facebook\.com|hrc\.io|nyti\.ms|cnn\.it)\S*)\b/g, "");
             console.log('tweetsString [' + parseInt((i+1) + (count*20)) + ']: ', tweetsString)
             tweetsArray.push(tweetsString)
           }
