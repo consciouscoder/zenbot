@@ -135,8 +135,8 @@ casper.start("https://www.reddit.com/login", function() {
 
   });
 
-  casper.wait(2000, function() {
-      this.echo("I've waited for 3 seconds.");
+  casper.wait(4000, function() {
+      this.echo("I've waited for 4 seconds.");
       casper.capture("reddit.png");
   });
 
@@ -144,7 +144,7 @@ casper.start("https://www.reddit.com/login", function() {
        console.log('Opened page with title \"' + this.getTitle() + '"');
   });
 
-  casper.wait(2000, function() {
+  casper.wait(3000, function() {
       this.echo("I've waited for 3 seconds.");
       casper.capture("reddit.png");
   });
