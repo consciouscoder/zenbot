@@ -492,3 +492,51 @@ html, body{
   50% {transform: translateX(0px);}
   100% {transform: translateX(-40px);}
 }
+
+/* ----------------------------------------------------- */
+
+#real-loader {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  line-height: 20px;
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+}
+#real-loader a,
+#real-loader a:visited {
+  color: rgba(255,255,255,0.8);
+}
+
+#shell {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+#shell #bg {
+  -webkit-transition: all 0.15s ease-in-out;
+  -moz-transition: all 0.15s ease-in-out;
+  -o-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  width: 100px;
+  margin-left: -50px;
+  height: 10px;
+  background: rgba(0,0,0,0.5);
+  position: relative;
+}
+#shell #bg #bar {
+  -webkit-transition: all 0.15s ease-in-out;
+  -moz-transition: all 0.15s ease-in-out;
+  -o-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background: rgba(255,255,255,0.5);
+  height: 6px;
+  width: 0px;
+  line-height: 196px;
+  text-align: center;
+  font-size: 30px;
+  color: rgba(0,0,0,0.5);
+}

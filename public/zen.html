@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="zenbot">
+
+<head>
+  <meta charset="utf-8">
+  <title>zenbot</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" type="text/css">
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+
+<body ng-controller="loginController as logCtrl">
+
+  <!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <!-- <button class="btn btn-navbar" ng-click="isCollapsed = !isCollapsed"> -->
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- <a class="navbar-brand" href="#">zenbot</a> -->
+        <a href="#" class="pull-left"><img src=".\images\zenbot_navbar.png"></a>
+      </div>
+
+      <div ng-show="logCtrl.isLoggedIn">
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li> -->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" id="navDropDown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <div class="img-rounded profile-img"></div>
+                buddha@enlightenment.org<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#/dashboard" id="action-dashboard">My ZenBots - Dashboard</a></li>
+                <li><a ng-click="logCtrl.popDataTemples()" href="#/datatemple" id="action-datatemple">My Data Temples</a></li>
+                <li><a href="#/scheduler" id="action-scheduler">My Zen Scheduler</a></li>
+                <li role="separator" class="divider"></li>
+                <!-- <li class="dropdown-header">Nav header</li> -->
+                <li><a href="#" ng-click="logCtrl.logout()" id="action-logoff">Logout - buddha@enlightenment.org</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</nav>
+
+  <script type="text/javascript">
+  var d = 'horizontal', c = 0, s = 100, m = 200;
+  setInterval(function() {
+    function dim() {
+      c += Math.random() * 5;
+      if (s - c < Math.random() * 5) s += Math.random() * 15;
+      if (s > m) s = m;
+      if (c > s) c = s;
+
+      var barSize = (c - 4) + "px", bgSize = s + "px", bgMargin = (s * -0.5) + "px";
+      if (d == "horizontal") {
+        bar.style.width = barSize;
+        bg.style.width = bgSize;
+        bg.style.marginLeft = bgMargin;
+      } else if (d == "vertical") {
+        bar.style.height = barSize;
+        bg.style.height = bgSize;
+        bg.style.marginTop = bgMargin;
+      }
+      return c == s && c == m;
+    }
+
+    if (d == "horizontal" && dim()) {
+      c = 0; s = 100; d = "vertical";
+    } else if (d == "vertical" && dim()) {
+      c = 6; s = 100; d = "text";
+    } else if (d =="text") {
+       dim();
+       bar.innerHTML = (Math.round(c / m * 99) + Math.round(Math.random() * 9) / 10) + "%";
+    }
+
+  }, 200);
+  </script>
+
+<div id="shell">
+  <div id="bg">
+    <div id="bar"></div>
+  </div>
+</div>
+
+</body>
+
+</html>

@@ -6,10 +6,110 @@
 
     <p>This page is to schedule your zenbots to run automatically on a schedule.<BR>
       <BR>
-    <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-      <input type="text" placeholder="Scrape which Google query?" ng-model="bCtrl.googleQuery" class="form-control">
-    </div>
+
+        <p><b>Select zenbot to schdule:</b><BR>
+      <p>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
+
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" ng-model="bCtrl.schedulerAction" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              AutoBot
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="">AutoBot</a></li>
+              <li><a href="">Twitter Scraper</a></li>
+              <li><a href="">Google Scraper</a></li>
+            </ul>
+          </div>
+        </div>
+      </p>
+
+      <p><b>How often to schedule?</b><BR>
+
+    <p>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
+
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" ng-model="bCtrl.schedulerAction" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            1 Hour
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="">1 Minute</a></li>
+            <li><a href="">15 Minutes</a></li>
+            <li><a href="">1 Hour</a></li>
+            <li><a href="">12 Hour</a></li>
+            <li><a href="">24 Hour</a></li>
+          </ul>
+        </div>
+      </div>
+    </p>
+
+        <p><b>Enter start URL:</b><BR>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
+        <p>
+          <input type="text" placeholder="Start at which URL?" ng-model="bCtrl.schedulerStartURL" class="form-control">
+        </p>
+        </div>
+        </p>
+
+        <p><b>Enter login:</b><BR>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
+        <p>
+          <input type="text" placeholder="What is the login?" ng-model="bCtrl.schedulerLogin" class="form-control">
+        </p>
+        </div>
+        </p>
+
+        <p><b>Enter password:</b><BR>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
+        <p>
+          <input type="password" placeholder="What is the password?" ng-model="bCtrl.schedulerPassword" class="form-control">
+        </p>
+        </div>
+        </p>
+
+        <p><b>Automate actions on this URL:</b><BR>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
+        <p>
+          <input type="text" placeholder="Which URL do you want to automate actions?" ng-model="bCtrl.schedulerActionURL" class="form-control">
+        </p>
+        </div>
+        </p>
+
+        <p><b>Class or XPath selector:</b><BR>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
+        <p>
+          <input type="text" placeholder="Selector(s) to select?" ng-model="bCtrl.schedulerClassSelector" class="form-control">
+        </p>
+        </div>
+        </p>
+
+        <p><b>Action on above selector:</b><BR>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
+
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" ng-model="bCtrl.schedulerAction" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Click
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="">Click</a></li>
+              <li><a href="">Grab innerHTML</a></li>
+              <li><a href="">Grab outerHTML</a></li>
+            </ul>
+          </div>
+
+        </div>
 
     </p>
     <p>
