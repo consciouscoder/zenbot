@@ -54,10 +54,10 @@ server.listen(ipAndPort, function(request, response) {
   }
 
 
-  response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-  response.setHeader("Access-Control-Allow-Headers", "Origin, Content-Type, X-Requested-With, Accept, Authorization, X-Auth-Token, X-Custom-Header");
-  response.setHeader("Access-Control-Allow-Credentials", "true");
-  response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:8080");
+  // response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+  // response.setHeader("Access-Control-Allow-Headers", "Origin, Content-Type, X-Requested-With, Accept, Authorization, X-Auth-Token, X-Custom-Header");
+  // response.setHeader("Access-Control-Allow-Credentials", "true");
+  // response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:8080");
   // response.headers();
 
   // console.log('request POST for Twitter User: ', twitterUser)
@@ -136,7 +136,7 @@ casper.start("https://www.reddit.com/login", function() {
   });
 
   casper.wait(2000, function() {
-      this.echo("I've waited for 2 seconds.");
+      this.echo("I've waited for 3 seconds.");
       casper.capture("reddit.png");
   });
 
@@ -145,7 +145,7 @@ casper.start("https://www.reddit.com/login", function() {
   });
 
   casper.wait(2000, function() {
-      this.echo("I've waited for 2 seconds.");
+      this.echo("I've waited for 3 seconds.");
       casper.capture("reddit.png");
   });
 
@@ -289,8 +289,8 @@ casper.then(function(){
 
   console.log('upVotes.length: ', upVoteCounter)
 
-  casper.wait(1000, function() {
-      this.echo("I've waited for 3 seconds.");
+  casper.wait(2000, function() {
+      this.echo("I've waited for 2 seconds.");
       screenCap = "reddit-" + makeid() + ".png";
       casper.capture("../../public/screencaptures/" + screenCap);
       //casper.capture(screenCap);
