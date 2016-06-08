@@ -292,7 +292,8 @@ casper.then(function(){
   casper.wait(1000, function() {
       this.echo("I've waited for 3 seconds.");
       screenCap = "reddit-" + makeid() + ".png";
-      casper.capture("../../public/screencaptures/" + screenCap);
+      //casper.capture("../../public/screencaptures/" + screenCap);
+      casper.capture(screenCap);
   });
 
 })
