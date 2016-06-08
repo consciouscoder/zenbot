@@ -34,7 +34,7 @@ function callback () {
 
 request(url, function (error, response, body) {
 	if (error) {
-		console.log(“Couldn’t get page because of error: “ + error);
+		console.log("Couldn’t get page because of error: " + error);
 		return;
 	}
 
@@ -59,7 +59,7 @@ request(url, function (error, response, body) {
 		// download that page
 		request(url, function (error, response, body) {
 			if (error) {
-				console.log(“Couldn’t get page because of error: “ + error);
+				console.log("Couldn’t get page because of error: " + error);
 				return;
 			}
 
