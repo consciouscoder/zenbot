@@ -47,9 +47,12 @@ console.log('inside googlebot.js! 4')
 	// load the body of the page into Cheerio so we can traverse the DOM
 	var $ = cheerio.load(body),
 		links = $(".r a");
-    console.log('inside googlebot.js! 5')
+    console.log('inside googlebot.js! 5', links)
 
-  console.log('inside googlebot.js! 6')
+  console.log('inside googlebot.js! 6', links[0])
+  console.log('inside googlebot.js! 6', links[0].href)
+  console.log('inside googlebot.js! 6', links[1])
+  console.log('inside googlebot.js! 7', links[1].href)
 
 	links.each(function (i, link) {
 		// get the href attribute of each link
