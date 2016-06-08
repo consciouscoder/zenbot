@@ -17,6 +17,10 @@
       bCtrl.autoClassSelector = "div.arrow.up.login-required.access-required"
       bCtrl.autoAction = "CLICK"
 
+      bCtrl.d3Kill = function() {
+        d3.select("svg").remove();
+      }
+
       bCtrl.checkLoading = function() {
           if (bCtrl.isLoading) {
             console.log('isLoading: TRUE')
@@ -135,7 +139,7 @@
                 // console.log('word freq: ', wordFrequency(bCtrl.twitterBotArray.join()))
                 bCtrl.wordFrequencyArray = wordFrequency(bCtrl.twitterBotArray.join())
                 console.log('twitter word freq: ', JSON.stringify(bCtrl.wordFrequencyArray))
-                drawWordCloud(bCtrl.wordFrequencyArray)
+                drawWordCloud(bCtrl.wordFrequencyArray, "vis")
 
                 $location.hash('button-div')
                 $anchorScroll()
@@ -166,8 +170,37 @@
 
                 bCtrl.wordFrequencyArray = bCtrl.googleBotArray
                 console.log('google word freq: ', JSON.stringify(bCtrl.googleBotArray))
-                drawWordCloud(bCtrl.googleBotArray)
+                drawWordCloud(bCtrl.googleBotArray, "vis")
             }
+      }
+
+
+
+      bCtrl.drawGoogleWordCloudDataTemple = function(googleDataTempleArray) {
+
+                // $state.go('googlebot')
+                bCtrl.googleWordCloud = true
+
+                console.log('googleDataTempleArray: ', googleDataTempleArray.topWords)
+
+                bCtrl.googleBotArray = []
+
+                bCtrl.googleDataTempleProcess = googleDataTempleArray.topWords
+
+                for(var i=0; i < bCtrl.googleDataTempleProcess.length; i++) {
+                  bCtrl.googleBotArray.push({ "key" : bCtrl.googleDataTempleProcess[i].key,
+                                            "value" : bCtrl.googleDataTempleProcess[i].value
+                                          })
+                }
+
+
+                // console.log('word freq: ', wordFrequency(bCtrl.twitterBotArray.join()))
+                // bCtrl.wordFrequencyArray = wordFrequency(bCtrl.googleBotArray.join())
+
+                // bCtrl.wordFrequencyArray = bCtrl.googleBotArray
+                console.log('google word freq: ', JSON.stringify(bCtrl.googleBotArray))
+                drawWordCloud(bCtrl.googleBotArray, "vis2")
+
       }
 
       bCtrl.checkGoogleWordCloud = function() {

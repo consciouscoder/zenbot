@@ -23,11 +23,13 @@
 <ul class="nav nav-tabs" id="myTab">
   <li class="active"><a data-target="#twitterData" data-toggle="tab">Twitter Data Temple</a></li>
   <li><a data-target="#googleData" data-toggle="tab">Google Data Temple</a></li>
-  <li><a data-target="#autoData" data-toggle="tab">AutoBot Data Temple</a></li>
+  <!-- <li><a data-target="#autoData" data-toggle="tab">AutoBot Data Temple</a></li> -->
 </ul>
 
+<div class="modal-body" id="vis2"></div>
+
 <div class="tab-content">
-  <div class="tab-pane active" id="twitterData">
+  <div class="tab-pane active" id="twitterData" ng-click="bCtrl.d3Kill()">
     <div class="container">
         <div class="box-dash-temple-data">
 
@@ -63,13 +65,15 @@
                 <tr>
                   <th class="col-xs-3 col-lg-3">Date / Time</th>
                   <th class="col-xs-2 col-lg-2">Google Query</th>
-                  <th class="col-xs-7 col-lg-7">Results</th>
+                  <th class="col-xs-5 col-lg-5">Results</th>
+                  <th class="col-xs-2 col-lg-2"></th>
                 </tr>
               </thead>
             <tr ng-repeat="temple in bCtrl.myDataTemplesGoogleArray">
               <td class="col-xs-3 col-lg-3">{{ temple.createdAt }}</td>
               <td class="col-xs-2 col-lg-2"><a href="https://www.google.com/search?q={{ temple.googleQuery }}" target="_blank">{{ temple.googleQuery }}</a></td>
-              <td class="col-xs-7 col-lg-7"><a href="" ng-click="showKeywords = ! showKeywords">{{ temple.topWords.length }} results</a>
+              <td class="col-xs-3 col-lg-3"><a href="" ng-click="showKeywords = ! showKeywords">{{ temple.topWords.length }} results</a>
+
               <div ng-show="showKeywords">
                 <table class="table table">
                     <thead>
@@ -85,14 +89,18 @@
                 </table>
                </div>
               </td>
+
+              <td class="col-xs-4 col-lg-4"><a href="" ng-click="bCtrl.drawGoogleWordCloudDataTemple(temple)">Word Cloud</a></td>
+
             </tr>
           </table>
         </div>
     </div>
   </div>
-  <div class="tab-pane" id="autoData">
-    <!-- AutoBot Temple -->
-  </div>
+
+  <!-- <div class="tab-pane" id="autoData">
+     AutoBot Temple
+  </div> -->
 
   </div>
 </div>
