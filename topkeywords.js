@@ -62,24 +62,34 @@ request(url, function (error, response, body) {
 				console.log("Couldn’t get page because of error: " + error);
 				return;
 			}
+  console.log('inside googlebot.js! 1')
 
 			// load the page into cheerio
 			var $page = cheerio.load(body),
 				text = $page("body").text();
+
+    console.log('inside googlebot.js! 2')
 
 			// throw away extra whitespace and non-alphanumeric characters
 			text = text.replace(/\s+/g, " ")
 					   .replace(/[^a-zA-Z ]/g, "")
 					   .toLowerCase();
 
+    console.log('inside googlebot.js! 3')
+
 			// split on spaces for a list of all the words on that page and
 			// loop through that list
 			text.split(" ").forEach(function (word) {
 				// we don't want to include very short or long words, as they're
 				// probably bad data
+
+        console.log('inside googlebot.js! 4')
+
 				if (word.length < 4 || word.length > 20) {
 					return;
 				}
+
+        console.log('inside googlebot.js! 5')
 
 				if (corpus[word]) {
 					// if this word is already in our "corpus", our collection

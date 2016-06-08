@@ -122,7 +122,7 @@ module.exports = function(query, callback) {
 			var $ = cheerio.load(body),
 				links = $(".r a");
 
-			console.log('inside googlebot.js! 2', links)
+			console.log('inside googlebot.js! 2')
 
 			links.each(function (i, link) {
 				// get the href attribute of each link
