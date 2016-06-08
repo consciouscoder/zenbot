@@ -8,8 +8,10 @@ var request = require("request"),
 
 function callback () {
 	resultsDownloaded++;
+  console.log('inside googlebot.js! 1')
 
 	if (resultsDownloaded !== totalResults) {
+    console.log('inside googlebot.js! 2')
 		return;
 	}
 
@@ -21,6 +23,8 @@ function callback () {
 			word: prop,
 			count: corpus[prop]
 		});
+
+  console.log('inside googlebot.js! 3')
 	}
 
 	// sort array based on how often they occur
@@ -38,9 +42,14 @@ request(url, function (error, response, body) {
 		return;
 	}
 
+console.log('inside googlebot.js! 4')
+
 	// load the body of the page into Cheerio so we can traverse the DOM
 	var $ = cheerio.load(body),
 		links = $(".r a");
+    console.log('inside googlebot.js! 5')
+
+  console.log('inside googlebot.js! 6')
 
 	links.each(function (i, link) {
 		// get the href attribute of each link
@@ -48,34 +57,37 @@ request(url, function (error, response, body) {
 
 		// strip out unnecessary junk
 		url = url.replace("/url?q=", "").split("&")[0];
+    console.log('inside googlebot.js! 7')
 
 		if (url.charAt(0) === "/") {
 			return;
+      console.log('inside googlebot.js! 8')
 		}
 
 		// this link counts as a result, so increment results
 		totalResults++;
 
+   console.log('inside googlebot.js! 9')
 		// download that page
 		request(url, function (error, response, body) {
 			if (error) {
 				console.log("Couldn’t get page because of error: " + error);
 				return;
 			}
-  console.log('inside googlebot.js! 1')
+  console.log('inside googlebot.js! 10')
 
 			// load the page into cheerio
 			var $page = cheerio.load(body),
 				text = $page("body").text();
 
-    console.log('inside googlebot.js! 2')
+    console.log('inside googlebot.js! 11')
 
 			// throw away extra whitespace and non-alphanumeric characters
 			text = text.replace(/\s+/g, " ")
 					   .replace(/[^a-zA-Z ]/g, "")
 					   .toLowerCase();
 
-    console.log('inside googlebot.js! 3')
+    console.log('inside googlebot.js! 12')
 
 			// split on spaces for a list of all the words on that page and
 			// loop through that list
@@ -83,23 +95,27 @@ request(url, function (error, response, body) {
 				// we don't want to include very short or long words, as they're
 				// probably bad data
 
-        console.log('inside googlebot.js! 4')
+        console.log('inside googlebot.js! 13')
 
 				if (word.length < 4 || word.length > 20) {
+          console.log('inside googlebot.js! 14')
 					return;
 				}
 
-        console.log('inside googlebot.js! 5')
+        console.log('inside googlebot.js! 15')
 
 				if (corpus[word]) {
+          console.log('inside googlebot.js! 16')
 					// if this word is already in our "corpus", our collection
 					// of terms, increase the count by one
 					corpus[word]++;
 				} else {
+          console.log('inside googlebot.js! 17')
 					// otherwise, say that we've found one of that word so far
 					corpus[word] = 1;
 				}
 			});
+      console.log('inside googlebot.js! 18')
 
 			// and when our request is completed, call the callback to wrap up!
 			callback();
