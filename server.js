@@ -108,6 +108,10 @@ app.post('/api/bot/google', function(req, res) {
 
     var gbot = new googleBot (googleQuery, function(response){
 
+
+      console.log('after new googleBot: ', googleQuery, response)
+
+
       res.send(response)
     });
 })
