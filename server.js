@@ -106,7 +106,7 @@ app.post('/api/bot/google', function(req, res) {
     console.log('received POST BODY for bot: ', req.body)
     console.log('received POST googleQuery for bot: ', req.body.googleQuery)
 
-    var gbot = new googleBot (googleQuery, function(response){
+    var gbot = googleBot (googleQuery, function(response){
 
 
       console.log('after new googleBot: ', googleQuery, response)
