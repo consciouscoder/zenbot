@@ -79,7 +79,7 @@ module.exports = function(query, callback) {
 				return;
 			}
 
-			console.log('inside googlebot.js! 4')
+			console.log('inside googlebot.js! 7')
 
 			var words = [];
 
@@ -131,9 +131,13 @@ module.exports = function(query, callback) {
 				// strip out unnecessary junk
 				url = url.replace("/url?q=", "").split("&")[0];
 
+				console.log('inside googlebot.js! 3')
+
 				if (url.charAt(0) === "/") {
 					return;
 				}
+
+				console.log('inside googlebot.js! 4')
 
 				// this link counts as a result, so increment results
 				totalResults++;
@@ -144,17 +148,20 @@ module.exports = function(query, callback) {
 						console.log("Couldn’t get page because of error: " + error);
 						return;
 					}
+					console.log('inside googlebot.js! 5')
 
 					// load the page into cheerio
 					var $page = cheerio.load(body),
 						text = $page("body").text();
+
+					console.log('inside googlebot.js! 3')
 
 					// throw away extra whitespace and non-alphanumeric characters
 					text = text.replace(/\s+/g, " ")
 							   .replace(/[^a-zA-Z ]/g, "")
 							   .toLowerCase();
 
-					console.log('inside googlebot.js! 3')
+					console.log('inside googlebot.js! 6')
 
 					// split on spaces for a list of all the words on that page and
 					// loop through that list
