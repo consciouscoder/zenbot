@@ -112,7 +112,9 @@
 
                 console.log("connecting to Bot to scrape: ", autoQuery)
 
-                var url = "/api/bot/auto"
+                //var url = "/api/bot/auto"
+                var url = "http://192.168.173.165:80/api/bot/auto"
+
 
                return $http.post(url, autoQuery)
                            .then(function(response) {
