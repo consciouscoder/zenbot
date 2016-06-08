@@ -24,7 +24,7 @@ module.exports = function(query, callback) {
 			corpus = {},
 			totalResults = 0,
 			resultsDownloaded = 0;
-			console.log('inside googlebot.js!')
+			console.log('inside googlebot.js! 1')
 
 		// Filter out common words / HTML tags and JS
 		function wordOK(word) {
@@ -79,6 +79,8 @@ module.exports = function(query, callback) {
 				return;
 			}
 
+			console.log('inside googlebot.js! 4')
+
 			var words = [];
 
 			// stick all words in an array
@@ -120,6 +122,8 @@ module.exports = function(query, callback) {
 			var $ = cheerio.load(body),
 				links = $(".r a");
 
+			console.log('inside googlebot.js! 2')
+
 			links.each(function (i, link) {
 				// get the href attribute of each link
 				var url = $(link).attr("href");
@@ -149,6 +153,8 @@ module.exports = function(query, callback) {
 					text = text.replace(/\s+/g, " ")
 							   .replace(/[^a-zA-Z ]/g, "")
 							   .toLowerCase();
+
+					console.log('inside googlebot.js! 3')
 
 					// split on spaces for a list of all the words on that page and
 					// loop through that list
