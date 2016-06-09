@@ -137,7 +137,7 @@ casper.start("https://www.reddit.com/login", function() {
 
   casper.wait(4000, function() {
       this.echo("I've waited for 4 seconds.");
-      casper.capture("reddit.png");
+      // casper.capture("reddit.png");
   });
 
   casper.thenOpen('https://www.reddit.com/r/all', function() {
@@ -146,7 +146,7 @@ casper.start("https://www.reddit.com/login", function() {
 
   casper.wait(3000, function() {
       this.echo("I've waited for 3 seconds.");
-      casper.capture("reddit.png");
+      // casper.capture("reddit.png");
   });
 
 });
