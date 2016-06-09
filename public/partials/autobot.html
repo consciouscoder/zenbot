@@ -103,8 +103,8 @@
     <p>
       <div ng-show="bCtrl.autoScreenCapture" class="alert alert-success" role="alert">
         Success! AutoBot has automated your tasks for <B>{{ bCtrl.autoActionURL }}</B> -- Screenshot:
-        <a ngIf="!bCtrl.localAutoBot" href=".\screencaptures\{{ bCtrl.autoScreenCapture }}" target="_blank">
-        <a ngIf="bCtrl.localAutoBot" href="http:\\192.168.173.165\screencaptures\{{ bCtrl.autoScreenCapture }}" target="_blank">
+        <a ng-show="!bCtrl.checkLocalAutoBot()" href=".\screencaptures\{{ bCtrl.autoScreenCapture }}" target="_blank">
+        <a ng-show="bCtrl.checkLocalAutoBot()" href="http:\\192.168.173.165\screencaptures\{{ bCtrl.autoScreenCapture }}" target="_blank">
 
           {{ bCtrl.autoScreenCapture }}</a>
 

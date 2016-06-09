@@ -82,11 +82,22 @@
 
       //====== Start AutoBot! ======
 
+      bCtrl.checkLocalAutoBot = function() {
+         if (bCtrl.localAutoBot) {
+           console.log('bCtrl.localAutoBot: TRUE')
+           return true
+
+         } else {
+           console.log('bCtrl.localAutoBot: FALSE')
+           return false
+         }
+      }
+
 
       // REMOTE
       bCtrl.startAutoBot = function() {
 
-         bCtrl.localAutoBot = false
+        bCtrl.localAutoBot = false
 
          bCtrl.isLoading = true
          bCtrl.autoScreenCapture = ""
