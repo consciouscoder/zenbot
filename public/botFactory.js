@@ -86,7 +86,7 @@
                 console.log("connecting to Bot to scrape: ", googleQuery)
 
                 //var url = "/api/bot/google"
-                if (!localAutoBot) {
+                if (!bCtrl.localAutoBot) {
                   // REMOTE
                   var url = "/api/bot/google"
 
