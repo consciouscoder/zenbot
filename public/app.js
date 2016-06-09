@@ -55,11 +55,6 @@
       // logCtrl.loggedIn = false
       logCtrl.page = 'Login'
 
-
-
-      $window.isLoading = $rootScope.isLoading
-      console.log('$window.isLoading: ',$window.isLoading)
-
       // logCtrl.isLoggedIn = false
 
       logCtrl.checkLogIn = function() {

@@ -82,7 +82,11 @@
 
       //====== Start AutoBot! ======
 
+
+      // REMOTE
       bCtrl.startAutoBot = function() {
+
+         bCtrl.localAutoBot = false
 
          bCtrl.isLoading = true
          bCtrl.autoScreenCapture = ""
@@ -107,6 +111,33 @@
           })
       }
 
+      // LOCAL!!
+      bCtrl.startAutoBot2 = function() {
+
+         bCtrl.localAutoBot = true
+
+         bCtrl.isLoading = true
+         bCtrl.autoScreenCapture = ""
+
+         bCtrl.autoQuery = { autoStartURL : bCtrl.autoStartURL,
+                             autoLogin : bCtrl.autoLogin,
+                             autoPassword : bCtrl.autoPassword,
+                             autoActionURL : bCtrl.autoActionURL,
+                             autoClassSelector : bCtrl.autoClassSelector,
+                             autoAction : bCtrl.autoAction
+                            }
+
+          autoBotFactory.botConnectNode(bCtrl.autoQuery).then(function(autoBotResponse){
+              console.log('autoBotResponse: ', autoBotResponse)
+
+              bCtrl.autoBotResponseObj = autoBotResponse.data
+
+              bCtrl.autoScreenCapture = bCtrl.autoBotResponseObj.screenCap
+              console.log('autobot array: ', JSON.stringify(bCtrl.autoBotResponseObj))
+
+              bCtrl.isLoading = false
+          })
+      }
 
       //====== Save Twitter Scrape to Data Temple =======
       bCtrl.twitterSaveData = function() {
