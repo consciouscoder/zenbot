@@ -71,8 +71,8 @@
     <BR>
     <p>
       <div style="box-twitter-buttons">
-          <button class="btn btn-primary btn" type="button" id="startAutoBot" ng-click="bCtrl.startAutoBot()">Start AutoBot!</button>
-          <button class="btn btn-primary btn" type="button" id="startAutoBot" ng-click="bCtrl.startAutoBot2()">AB 2</button>
+          <button class="btn btn-primary btn" type="button" id="startAutoBot" ng-click="bCtrl.startAutoBot2()">Start AutoBot!</button>
+          <!-- <button class="btn btn-primary btn" type="button" id="startAutoBot" ng-click="bCtrl.startAutoBot()">AB 2</button> -->
         </button>
       </div>
     </p>
@@ -103,8 +103,8 @@
     <p>
       <div ng-show="bCtrl.autoScreenCapture" class="alert alert-success" role="alert">
         Success! AutoBot has automated your tasks for <B>{{ bCtrl.autoActionURL }}</B> -- Screenshot:
-        <a ng-show="!bCtrl.checkLocalAutoBot()" href=".\screencaptures\{{ bCtrl.autoScreenCapture }}" target="_blank">
-        <a ng-show="bCtrl.checkLocalAutoBot()" href="http:\\192.168.173.165\screencaptures\{{ bCtrl.autoScreenCapture }}" target="_blank">
+        <!-- <a ng-show="!bCtrl.checkLocalAutoBot()" href=".\screencaptures\{{ bCtrl.autoScreenCapture }}" target="_blank"> -->
+        <a href="http:\\192.168.173.165\screencaptures\{{ bCtrl.autoScreenCapture }}" target="_blank">
 
           {{ bCtrl.autoScreenCapture }}</a>
 
