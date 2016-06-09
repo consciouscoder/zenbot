@@ -99,7 +99,7 @@
                              autoAction : bCtrl.autoAction
                             }
 
-          autoBotFactory.botConnectNode(bCtrl.autoQuery).then(function(autoBotResponse){
+          autoBotFactory.botConnectNode(bCtrl.autoQuery, bCtrl.localAutoBot).then(function(autoBotResponse){
               console.log('autoBotResponse: ', autoBotResponse)
 
               bCtrl.autoBotResponseObj = autoBotResponse.data
@@ -127,7 +127,7 @@
                              autoAction : bCtrl.autoAction
                             }
 
-          autoBotFactory.botConnectNode(bCtrl.autoQuery).then(function(autoBotResponse){
+          autoBotFactory.botConnectNode(bCtrl.autoQuery, bCtrl.localAutoBot).then(function(autoBotResponse){
               console.log('autoBotResponse: ', autoBotResponse)
 
               bCtrl.autoBotResponseObj = autoBotResponse.data

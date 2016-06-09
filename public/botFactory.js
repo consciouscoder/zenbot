@@ -86,19 +86,8 @@
                 console.log("connecting to Bot to scrape: ", googleQuery)
 
                 //var url = "/api/bot/google"
-                if (!bCtrl.localAutoBot) {
-                  // REMOTE
-                  var url = "/api/bot/google"
-
-                  console.log('autobot REMOTE!')
-
-                } else {
-                  // LOCAL
                   var url = "http://192.168.173.165:80/api/bot/google"
 
-                  console.log('autobot LOCAL!')
-
-                }
 
                return $http.post(url, {googleQuery: googleQuery })
                            .then(function(response) {
@@ -119,12 +108,26 @@
         var autoBot = {}
 
 
-        autoBot.botConnectNode = function(autoQuery) {
+        autoBot.botConnectNode = function(autoQuery, localAutoBot) {
 
                 console.log("connecting to Bot to scrape: ", autoQuery)
 
-                var url = "/api/bot/auto"
-                //var url = "http://192.168.173.165:80/api/bot/auto"
+
+                if (!localAutoBot) {
+                  // REMOTE
+                  var url = "/api/bot/auto"
+
+                  console.log('autobot REMOTE!')
+
+                } else {
+                  // LOCAL
+                  var url = "http://192.168.173.165:80/api/bot/auto"
+
+                  console.log('autobot LOCAL!')
+
+                }
+
+
 
 
                return $http.post(url, autoQuery)
