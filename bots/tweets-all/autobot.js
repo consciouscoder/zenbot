@@ -69,16 +69,22 @@ server.listen(ipAndPort, function(request, response) {
   //     nbLinks, outputfilename,
   //     header = "Tweet,Timestamp",
   //     stream, css, count = 0, images
+  // viewportSize: {
+  //     width: 480,
+  //     height: 360
+  // },
 
 var casper = require('casper').create({
     viewportSize: {
-        width: 480,
-        height: 360
+        width: 1024,
+        height: 768
     },
+
     pageSettings: {
         loadImages: true,
         loadPlugins: false,
-        userAgent: 'BlackBerry9700/5.0.0.351 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/123'
+        userAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36'
+        // userAgent: 'BlackBerry9700/5.0.0.351 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/123'
     },
 });
 
