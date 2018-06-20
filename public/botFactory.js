@@ -86,7 +86,7 @@
                 console.log("connecting to Bot to scrape: ", googleQuery)
 
                 //var url = "/api/bot/google"
-                  var url = "http://192.168.173.165:80/api/bot/google"
+                  var url = "/api/bot/google"
 
 
                return $http.post(url, {googleQuery: googleQuery })
@@ -121,7 +121,7 @@
 
                 } else {
                   // LOCAL
-                  var url = "http://192.168.173.165:80/api/bot/auto"
+                  var url = "/api/bot/auto"
 
                   console.log('autobot LOCAL!')
 

@@ -29,6 +29,56 @@ module.exports = function(query, callback) {
 		// Filter out common words / HTML tags and JS
 		function wordOK(word) {
 				switch (word) {
+					case query:
+					case query + 's':
+					case 'pagenode':
+					case 'relnofollow':
+					case 'clinputchecked':
+					case 'value':
+					case 'xlsimpprod':
+					case 'archived':
+					case 'adtechcalltype':
+					case 'body':
+					case 'image':
+					case 'node':
+					case 'else':
+					case 'instanceof':
+					case 'wwwcommon':
+					case 'sets':
+					case 'other':
+					case 'find':
+					case 'wpcf':
+					case 'cart':
+					case 'stdebugloggerlog':
+					case 'carouselloadablectn':
+					case 'fontweight':
+					case 'fontsize':
+					case 'options':
+					case 'gaecaddimpression':
+					case 'windowconsole':
+					case 'maxwidth':
+					case 'emaildescriptionget':
+					case 'emaildescriptionwake':
+					case 'height':
+					case 'return':
+					case 'derived':
+					case 'preh':
+					case 'cbsigptdivids':
+					case 'adtemplate':
+					case 'display':
+					case 'documentwritediv':
+					case 'showdoubleclickad':
+					case 'tilerighttop':
+					case 'consolelog':
+					case 'queuing':
+					case 'consolelogads':
+					case 'site':
+					case 'bannerflexbottom':
+					case 'about':
+					case 'null':
+					case 'view':
+					case 'preh':
+					case 'bannerflextop':
 			    case 'ffffff':
 			    case 'divubergridcell':
 			    case 'isbn':

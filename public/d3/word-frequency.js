@@ -4,7 +4,7 @@ function wordFrequency(inputString) {
   	var iWordsCount = sWords.length; // count w/ duplicates
 
   	// array of words to ignore
-  	var ignore = ['and','the','to','a','of','for','as','i','with','it','is','on','that','this','can','in','be','has','have','if','&','-','@realdonaldtrump',
+  	var ignore = ['but','and','the','to','a','of','for','as','i','with','it','is','on','that','this','can','in','be','has','have','if','&','-','@realdonaldtrump',
                   '@berniesanders','@hillaryclinton','berniesanderscom','bernieto','#trump2016','cnnit','at','are','am','by'];
   	ignore = (function(){
   		var o = {}; // object prop checking > in array checking
@@ -33,11 +33,13 @@ function wordFrequency(inputString) {
       // ==== Only accept words over below amount ====
         if (counts[sWord] > 1) {
           if (wordCount <= 250) {
-            wordCount++
-        		arr.push({
-        			key: sWord,
-        			value: counts[sWord]
-        		})
+            if (sWord.charAt(0) !== "@") {
+              wordCount++
+          		arr.push({
+          			key: sWord,
+          			value: counts[sWord]
+          		})
+            }
           }
         }
     }
