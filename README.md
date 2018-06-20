@@ -1,5 +1,5 @@
-# ZenBot - A Friendly bot network for the masses. -- http://zenbot.io
--
+## ZenBot - A Friendly bot network for the masses. -- http://zenbot.io
+
 ZenBot is a full-stack (MEAN stack) app. The front-end is created in AngularJS and the
 back-end is created in NodeJS, Express, and MongoDB.
 
