@@ -15,4 +15,5 @@ authentication.
 Access is available by using the following credentials:
 
 login: demo@zenbot.io
+
 password: demo1337
