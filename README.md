@@ -1,4 +1,4 @@
-![alt text](http://zenbot.io/images/zenbot_landing3.jpg "ZenBot Logo")
+![alt text](http://zenbot.io/images/zenbot_landing4.jpg "ZenBot Logo")
 # ZenBot - A Friendly bot network for the masses.
 ### http://zenbot.io
 
