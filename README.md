@@ -14,6 +14,10 @@ authentication.
 
 Access is available by using the following credentials:
 
-login: demo
+login: buddha@enlightenment.org
+password: dragon123
 
-password: demo1337
+
+<!-- login: demo
+
+password: demo1337 -->
